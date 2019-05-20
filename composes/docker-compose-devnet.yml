@@ -6,8 +6,8 @@ services:
     container_name: tzlibre_node
     volumes:
       - ./scripts:/scripts
-      - ~/.tezos-node:/root/.tezos-node
-      - ~/.tezos-client:/root/.tezos-client
+      - ~/.tezos-node-devnet:/root/.tezos-node
+      - ~/.tezos-client-devnet:/root/.tezos-client
     restart: on-failure
     ports:
       - 0.0.0.0:9732:9732
