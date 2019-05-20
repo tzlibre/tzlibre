@@ -12,4 +12,34 @@ services:
     ports:
       - 0.0.0.0:9732:9732
       - 127.0.0.1:8732:8732
+    expose:
+      - 9732
+      - 8732
     command: bash -c 'sh /scripts/node.sh'
+  baker:
+    image: tzlibre/tzlibre:devnet
+    container_name: tzlibre_baker
+    volumes:
+      - ./scripts:/scripts
+      - ~/.tezos-node-devnet:/root/.tezos-node
+      - ~/.tezos-client-devnet:/root/.tezos-client
+    restart: on-failure
+    command: bash -c 'sh /scripts/baker.sh'
+  endorser:
+    image: tzlibre/tzlibre:devnet
+    container_name: tzlibre_endorser
+    volumes:
+      - ./scripts:/scripts
+      - ~/.tezos-node-devnet:/root/.tezos-node
+      - ~/.tezos-client-devnet:/root/.tezos-client
+    restart: on-failure
+    command: bash -c 'sh /scripts/endorser.sh'
+  accuser:
+    image: tzlibre/tzlibre:devnet
+    container_name: tzlibre_accuser
+    volumes:
+      - ./scripts:/scripts
+      - ~/.tezos-node-devnet:/root/.tezos-node
+      - ~/.tezos-client-devnet:/root/.tezos-client
+    restart: on-failure
+    command: bash -c 'sh /scripts/accuser.sh'
