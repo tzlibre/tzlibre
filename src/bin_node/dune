@@ -1,0 +1,43 @@
+(executable
+ (name main)
+ (public_name tezos-node)
+ (libraries tezos-base
+            tezos-stdlib-unix
+            tezos-shell-services
+            tezos-rpc-http
+            tezos-p2p
+            tezos-shell
+	    tezos-storage
+            tezos-protocol-updater
+            tezos-embedded-protocol-demo
+            tezos-embedded-protocol-000-Ps9mPmXa
+            tezos-embedded-protocol-001-PtCJ7pwo
+            tezos-embedded-protocol-002-PsYLVpVv
+            tezos-embedded-protocol-003-PsWqDswK
+            tezos-embedded-protocol-004-PstsZhmG
+            tezos-mempool-002-PsYLVpVv
+            tezos-mempool-003-PsWqDswK
+            tezos-mempool-004-PstsZhmG
+            cmdliner
+            tls)
+ (flags (:standard -w -9+27-30-32-40@8
+                   -safe-string
+                   -open Tezos_base__TzPervasives
+                   -open Tezos_stdlib_unix
+                   -open Tezos_shell_services
+                   -open Tezos_rpc_http
+                   -open Tezos_p2p
+                   -open Tezos_shell
+		   -open Tezos_storage
+                   -open Tezos_protocol_updater
+                   -linkall)))
+
+(install
+ (section bin)
+ (files (tezos-sandboxed-node.sh as tezos-sandboxed-node.sh)))
+
+(alias
+ (name runtest_indent)
+ (deps (glob_files *.ml{,i}))
+ (action
+  (run bash %{libexec:tezos-stdlib:test-ocp-indent.sh} %{deps})))

@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  node:
+    image: tzlibre/tzlibre:devnet
+    container_name: tzlibre_node
+    volumes:
+      - ./scripts:/scripts
+      - ~/.tezos-node:/root/.tezos-node
+      - ~/.tezos-client:/root/.tezos-client
+    restart: on-failure
+    ports:
+      - 0.0.0.0:9732:9732
+      - 127.0.0.1:8732:8732
+    command: bash -c 'sh /scripts/node.sh'
