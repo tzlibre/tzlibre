@@ -21,13 +21,13 @@ No static IP address required
 
 2. [Install docker-compose](https://docs.docker.com/compose/install/).
 
-3. Clone this repository.
+3. Clone this repository:
 
 ```
 git clone https://github.com/tzlibre/tzlibre.git
 ```
 
-4. Enter repository directory.
+4. Enter repository directory:
 
 ```
 cd tzlibre
