@@ -21,7 +21,20 @@ No static IP address required
 
 2. [Install docker-compose](https://docs.docker.com/compose/install/).
 
-3. Run a TzLibre devnet node:
+3. Clone this repository.
+
+```
+git clone https://github.com/tzlibre/tzlibre.git
+```
+
+4. Enter repository directory.
+
+```
+cd tzlibre
+```
+
+5. Run a TzLibre devnet node:
+
 ```
 docker-compose -f composes/docker-compose-devnet.yml up -d
 ```
