@@ -27,40 +27,40 @@
 open Client_config
 
 let disable_disclaimer =
-  match Sys.getenv_opt "TEZOS_CLIENT_UNSAFE_DISABLE_DISCLAIMER" with
+  match Sys.getenv_opt "TZLIBRE_CLIENT_UNSAFE_DISABLE_DISCLAIMER" with
   | Some ("yes" | "y" | "YES" | "Y") -> true
   | _ -> false
 
-let zeronet () =
+let devnet () =
   if not disable_disclaimer then
     Format.eprintf
       "@[<v 2>@{<warning>@{<title>Warning@}@}@,@,\
-      \               This is @{<warning>NOT@} the Tezos Mainnet.@,\
+      \               This is @{<warning>NOT@} the TzLibre Mainnet.@,\
        @,\
       \    The node you are connecting to claims to be running on the@,\
-      \               @{<warning>Tezos Zeronet DEVELOPMENT NETWORK@}.@,\
+      \               @{<warning>TzLibre Devnet DEVELOPMENT NETWORK@}.@,\
       \         Do @{<warning>NOT@} use your fundraiser keys on this network.@,\
-       Zeronet is a testing network, with free tokens and frequent resets.@]@\n@."
+       Devnet is a testing network, with free tokens and frequent resets.@]@\n@."
 
-let alphanet () =
+let testnet () =
   if not disable_disclaimer then
     Format.eprintf
       "@[<v 2>@{<warning>@{<title>Warning@}@}@,@,\
-      \               This is @{<warning>NOT@} the Tezos Mainnet.@,\
+      \               This is @{<warning>NOT@} the TzLibre Mainnet.@,\
        @,\
       \   The node you are connecting to claims to be running on the@,\
-      \             @{<warning>Tezos Alphanet DEVELOPMENT NETWORK.@}@,\
+      \             @{<warning>TzLibre Testnet DEVELOPMENT NETWORK.@}@,\
       \        Do @{<warning>NOT@} use your fundraiser keys on this network.@,\
-      \        Alphanet is a testing network, with free tokens.@]@\n@."
+      \        Testnet is a testing network, with free tokens.@]@\n@."
 
 let mainnet () =
   if not disable_disclaimer then
     Format.eprintf
       "@[<v 2>@{<warning>@{<title>Disclaimer@}@}@,\
-       The  Tezos  network  is  a  new  blockchain technology.@,\
+       The  TzLibre  network  is  a  new  blockchain technology.@,\
        Users are  solely responsible  for any risks associated@,\
-       with usage of the Tezos network.  Users should do their@,\
-       own  research to determine  if Tezos is the appropriate@,\
+       with usage of the TzLibre network.  Users should do their@,\
+       own  research to determine  if TzLibre is the appropriate@,\
        platform for their needs and should apply judgement and@,\
        care in their network interactions.@]@\n@."
 
@@ -69,7 +69,7 @@ let sandbox () =
     Format.eprintf
       "@[<v 2>@{<warning>@{<title>Warning@}@}@,@,\
       \ The node you are connecting to claims to be running in a@,\
-      \                  @{<warning>Tezos TEST SANDBOX@}.@,\
+      \                  @{<warning>TzLibre TEST SANDBOX@}.@,\
       \    Do @{<warning>NOT@} use your fundraiser keys on this network.@,\
        You should not see this message if you are not a developer.@]@\n@."
 
@@ -84,13 +84,13 @@ let check_network ctxt =
       if has_prefix "SANDBOXED" then begin
         sandbox () ;
         Lwt.return_some `Sandbox
-      end else if has_prefix "TEZOS_ZERONET" then begin
-        zeronet () ;
-        Lwt.return_some `Zeronet
-      end else if has_prefix "TEZOS_ALPHANET" then begin
-        alphanet () ;
-        Lwt.return_some `Alphanet
-      end else if has_prefix "TEZOS_BETANET" || has_prefix "TEZOS_MAINNET" then begin
+      end else if has_prefix "TZLIBRE_DEVNET" then begin
+        devnet () ;
+        Lwt.return_some `Devnet
+      end else if has_prefix "TZLIBRE_TESTNET" then begin
+        testnet () ;
+        Lwt.return_some `Testnet
+      end else if has_prefix "TZLIBRE_BETANET" || has_prefix "TZLIBRE_MAINNET" then begin
         mainnet () ;
         Lwt.return_some `Mainnet
       end else

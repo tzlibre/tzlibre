@@ -360,7 +360,7 @@ let commands version () =
       end;
   ] @
   (if version = (Some `Mainnet) then [] else [
-      command ~group ~desc:"Register and activate an Alphanet/Zeronet faucet account."
+      command ~group ~desc:"Get funds through Devnet/Testnet Faucet."
         (args2
            (Secret_key.force_switch ())
            encrypted_switch)
@@ -368,7 +368,7 @@ let commands version () =
          @@ Secret_key.fresh_alias_param
          @@ prefixes [ "with" ]
          @@ param ~name:"activation_key"
-           ~desc:"Activate an Alphanet/Zeronet faucet account from the downloaded JSON file."
+           ~desc:"Get funds through Devnet/Testnet Faucet."
            file_parameter
          @@ stop)
         (fun (force, encrypted) name activation_key_file cctxt ->

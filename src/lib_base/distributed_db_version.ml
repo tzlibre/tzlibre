@@ -31,10 +31,10 @@ type name = string
 let pp_name = Format.pp_print_string
 let name_encoding = Data_encoding.string
 
-let chain_name = "TEZOS_MAINNET"
-let old_chain_name = "TEZOS_BETANET_2018-06-30T16:07:32Z"
+let chain_name = "TZLIBRE_DEVNET_2019-05-21T09:01:24Z"
+let old_chain_name = "TZLIBRE_DEVNET_2019-05-20T14:00:21Z"
 let incompatible_chain_name = "INCOMPATIBLE"
-let sandboxed_chain_name = "SANDBOXED_TEZOS_MAINNET"
+let sandboxed_chain_name = "SANDBOXED_TZLIBRE_MAINNET"
 
 type t = int
 

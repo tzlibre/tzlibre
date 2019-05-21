@@ -45,3 +45,5 @@ dune-project
 
 *.rej
 *.orig
+
+.\#*

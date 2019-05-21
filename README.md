@@ -24,7 +24,22 @@ Here are some installation guides:
 
 #### 3. [Install docker-compose](https://docs.docker.com/compose/install/).
 
-#### 4. Clone repository and run a TzLibre devnet `node`
+#### 4. Update Docker images
+Force a Docker images update to the latest available version:
+
+```
+docker pull tzlibre/tzlibre
+docker pull tzlibre/tzlibre:devnet
+```
+
+#### 5. Cleanup old data
+If you ran a previous version of TzLibre devnet, clean it up:
+
+```
+sudo rm -rf ~/.tzlibre-node-devnet ~/.tzlibre-client-devnet ~/.tzlibre-signer-devnet
+```
+
+#### 6. Clone repository and run a TzLibre devnet `node`
 
 ```
 git clone https://github.com/tzlibre/tzlibre.git
@@ -89,10 +104,10 @@ tzlibre-client list known addresses
 > Pick the address associated with your alias.
 
 ##### 1.3. Fund address
-Fund your address with at least 10,000 devnet  coins. Get free devnet coins from this [faucet](http://faucet.devnet.tzlibre.io) 
+Fund your address with at least 10,000 devnet  coins. Get free devnet coins from this [faucet](http://faucet.devnet.tzlibre.io). 
 
 ##### 1.5. Check your balance
-Uuse the [block explorer](http://librexplorer.devnet.tzlibre.io/) or the command line:
+Use the [block explorer](http://librexplorer.devnet.tzlibre.io/) or the command line:
 
 ```
 tzlibre-client get balance for my_awesome_baker
@@ -170,5 +185,5 @@ eval $(opam env)
 make
 export PATH=~/tzlibre:$PATH
 source ./src/bin_client/bash-completion.sh
-export TEZOS_CLIENT_UNSAFE_DISABLE_DISCLAIMER=Y
+export TZLIBRE_CLIENT_UNSAFE_DISABLE_DISCLAIMER=Y
 ```

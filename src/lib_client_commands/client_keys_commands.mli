@@ -24,5 +24,5 @@
 (*****************************************************************************)
 
 val commands:
-  [`Zeronet | `Alphanet | `Mainnet | `Sandbox] option ->
+  [`Devnet | `Testnet | `Mainnet | `Sandbox] option ->
   Client_context.full Clic.command list
