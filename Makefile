@@ -26,18 +26,18 @@ endif
 		$(foreach p, $(active_protocol_directories), src/proto_$(p)/bin_baker/main_baker_$(p).exe) \
 		$(foreach p, $(active_protocol_directories), src/proto_$(p)/bin_endorser/main_endorser_$(p).exe) \
 		$(foreach p, $(active_protocol_directories), src/proto_$(p)/bin_accuser/main_accuser_$(p).exe)
-	@cp _build/default/src/bin_node/main.exe tezos-node
-	@cp _build/default/src/bin_client/main_client.exe tezos-client
-	@cp _build/default/src/bin_client/main_admin.exe tezos-admin-client
-	@cp _build/default/src/bin_signer/main_signer.exe tezos-signer
-	@cp _build/default/src/lib_protocol_compiler/main_native.exe tezos-protocol-compiler
+	@cp _build/default/src/bin_node/main.exe tzlibre-node
+	@cp _build/default/src/bin_client/main_client.exe tzlibre-client
+	@cp _build/default/src/bin_client/main_admin.exe tzlibre-admin-client
+	@cp _build/default/src/bin_signer/main_signer.exe tzlibre-signer
+	@cp _build/default/src/lib_protocol_compiler/main_native.exe tzlibre-protocol-compiler
 	@for p in $(active_protocol_directories) ; do \
-	   cp _build/default/src/proto_$$p/bin_baker/main_baker_$$p.exe tezos-baker-`echo $$p | tr -- _ -` ; \
-	   cp _build/default/src/proto_$$p/bin_endorser/main_endorser_$$p.exe tezos-endorser-`echo $$p | tr -- _ -` ; \
-	   cp _build/default/src/proto_$$p/bin_accuser/main_accuser_$$p.exe tezos-accuser-`echo $$p | tr -- _ -` ; \
+	   cp _build/default/src/proto_$$p/bin_baker/main_baker_$$p.exe tzlibre-baker-`echo $$p | tr -- _ -` ; \
+	   cp _build/default/src/proto_$$p/bin_endorser/main_endorser_$$p.exe tzlibre-endorser-`echo $$p | tr -- _ -` ; \
+	   cp _build/default/src/proto_$$p/bin_accuser/main_accuser_$$p.exe tzlibre-accuser-`echo $$p | tr -- _ -` ; \
 	 done
 
-PROTOCOLS := 000_Ps9mPmXa 001_PtCJ7pwo 002_PsYLVpVv 003_PsWqDswK 004_PstsZhmG demo
+PROTOCOLS := 000_Ps9mPmXa 001_PtCJ7pwo 002_PsYLVpVv 003_PsWqDswK demo
 DUNE_INCS=$(patsubst %,src/proto_%/lib_protocol/dune.inc, ${PROTOCOLS})
 
 generate_dune: ${DUNE_INCS}
@@ -58,25 +58,6 @@ $(addsuffix .pkg,${PACKAGES}): %.pkg:
 $(addsuffix .test,${PACKAGES}): %.test:
 	@dune build \
 	    @$(patsubst %/$*.opam,%,$(shell find src vendors -name $*.opam))/runtest
-
-doc-html: all
-	@dune build @doc
-	@./tezos-client -protocol PsWqDswKRAMVfXhciBJPCzqXkuKqsZKz87m9aC5AmUtt6APzuvy man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tezos-client.html
-	@./tezos-admin-client man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tezos-admin-client.html
-	@./tezos-signer man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tezos-signer.html
-	@./tezos-baker-alpha man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tezos-baker-alpha.html
-	@./tezos-endorser-alpha man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tezos-endorser-alpha.html
-	@./tezos-accuser-alpha man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tezos-accuser-alpha.html
-	@mkdir -p $$(pwd)/docs/_build/api/odoc
-	@rm -rf $$(pwd)/docs/_build/api/odoc/*
-	@cp -r $$(pwd)/_build/default/_doc/* $$(pwd)/docs/_build/api/odoc/
-	@${MAKE} -C docs html
-	@echo '@media (min-width: 745px) {.content {margin-left: 4ex}}' >> $$(pwd)/docs/_build/api/odoc/_html/odoc.css
-	@sed -e 's/@media only screen and (max-width: 95ex) {/@media only screen and (max-width: 744px) {/' $$(pwd)/docs/_build/api/odoc/_html/odoc.css > $$(pwd)/docs/_build/api/odoc/_html/odoc.css2
-	@mv $$(pwd)/docs/_build/api/odoc/_html/odoc.css2  $$(pwd)/docs/_build/api/odoc/_html/odoc.css
-
-doc-html-and-linkcheck: doc-html
-	@${MAKE} -C docs all
 
 build-test:
 	@dune build @buildtest
@@ -110,13 +91,11 @@ uninstall:
 clean:
 	@-dune clean
 	@-rm -f \
-		tezos-node \
-		tezos-client \
-		tezos-signer \
-		tezos-admin-client \
-		tezos-protocol-compiler \
-	  $(foreach p, $(active_protocol_versions), tezos-baker-$(p) tezos-endorser-$(p) tezos-accuser-$(p))
-	@-${MAKE} -C docs clean
-	@-rm -f docs/api/tezos-{baker,endorser,accuser}-alpha.html docs/api/tezos-{admin-,}client.html docs/api/tezos-signer.html
+		tzlibre-node \
+		tzlibre-client \
+		tzlibre-signer \
+		tzlibre-admin-client \
+		tzlibre-protocol-compiler \
+	  $(foreach p, $(active_protocol_versions), tzlibre-baker-$(p) tzlibre-endorser-$(p) tzlibre-accuser-$(p))
 
 .PHONY: all test build-deps docker-image clean

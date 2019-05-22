@@ -103,7 +103,7 @@ let () =
 let home = try Sys.getenv "HOME" with Not_found -> "/root"
 
 let default_base_dir =
-  Filename.concat home ".tezos-client"
+  Filename.concat home ".tzlibre-client"
 
 let default_chain = `Main
 let default_block = `Head 0

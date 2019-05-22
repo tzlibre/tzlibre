@@ -56,10 +56,10 @@ let info =
     Tezos_base.Current_git_info.abbreviated_commit_hash ^
     " ("^Tezos_base.Current_git_info.committer_date^")" in
   Cmdliner.Term.info
-    ~doc:"The Tezos node"
+    ~doc:"The Tzlibre node"
     ~man
     ~version
-    "tezos-node"
+    "tzlibre-node"
 
 let commands = [
   Node_run_command.cmd ;

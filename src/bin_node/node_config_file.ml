@@ -30,7 +30,7 @@ let home =
   try Sys.getenv "HOME"
   with Not_found -> "/root"
 
-let default_data_dir = home // ".tezos-node"
+let default_data_dir = home // ".tzlibre-node"
 let default_rpc_port       =  8732
 let default_p2p_port       =  9732
 let default_discovery_port = 10732

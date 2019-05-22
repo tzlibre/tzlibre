@@ -36,7 +36,7 @@ let default_tcp_port =
 
 let default_unix_path =
   match Sys.getenv_opt "TEZOS_SIGNER_UNIX_PATH" with
-  | None -> Filename.concat (Sys.getenv "HOME") (".tezos-signer.sock")
+  | None -> Filename.concat (Sys.getenv "HOME") (".tzlibre-signer.sock")
   | Some path -> path
 
 let default_https_host =
@@ -270,7 +270,7 @@ let commands base_dir require_auth : Client_context.full command list =
 let home = try Sys.getenv "HOME" with Not_found -> "/root"
 
 let default_base_dir =
-  Filename.concat home ".tezos-signer"
+  Filename.concat home ".tzlibre-signer"
 
 let (//) = Filename.concat
 

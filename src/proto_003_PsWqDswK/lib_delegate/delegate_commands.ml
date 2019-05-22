@@ -146,7 +146,7 @@ let baker_commands () =
       (prefixes [ "run" ; "with" ; "local" ; "node" ]
        @@ param
          ~name:"context_path"
-         ~desc:"Path to the node data directory (e.g. $HOME/.tezos-node)"
+         ~desc:"Path to the node data directory (e.g. $HOME/.tzlibre-node)"
          directory_parameter
        @@ seq_of_param Client_keys.Public_key_hash.alias_param)
       (fun (pidfile, max_priority, minimal_fees, minimal_nanotez_per_gas_unit,

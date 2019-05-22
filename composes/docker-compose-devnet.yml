@@ -6,8 +6,8 @@ services:
     container_name: tzlibre_node
     volumes:
       - ./scripts:/scripts
-      - ~/.tzlibre-node-devnet:/root/.tezos-node
-      - ~/.tzlibre-client-devnet:/root/.tezos-client
+      - ~/.tzlibre-node-devnet:/root/.tzlibre-node
+      - ~/.tzlibre-client-devnet:/root/.tzlibre-client
     restart: on-failure
     ports:
       - 0.0.0.0:9732:9732
@@ -21,8 +21,8 @@ services:
     container_name: tzlibre_baker
     volumes:
       - ./scripts:/scripts
-      - ~/.tzlibre-node-devnet:/root/.tezos-node
-      - ~/.tzlibre-client-devnet:/root/.tezos-client
+      - ~/.tzlibre-node-devnet:/root/.tzlibre-node
+      - ~/.tzlibre-client-devnet:/root/.tzlibre-client
     restart: on-failure
     command: bash -c 'sh /scripts/baker.sh'
   endorser:
@@ -30,8 +30,8 @@ services:
     container_name: tzlibre_endorser
     volumes:
       - ./scripts:/scripts
-      - ~/.tzlibre-node-devnet:/root/.tezos-node
-      - ~/.tzlibre-client-devnet:/root/.tezos-client
+      - ~/.tzlibre-node-devnet:/root/.tzlibre-node
+      - ~/.tzlibre-client-devnet:/root/.tzlibre-client
     restart: on-failure
     command: bash -c 'sh /scripts/endorser.sh'
   accuser:
@@ -39,7 +39,7 @@ services:
     container_name: tzlibre_accuser
     volumes:
       - ./scripts:/scripts
-      - ~/.tzlibre-node-devnet:/root/.tezos-node
-      - ~/.tzlibre-client-devnet:/root/.tezos-client
+      - ~/.tzlibre-node-devnet:/root/.tzlibre-node
+      - ~/.tzlibre-client-devnet:/root/.tzlibre-client
     restart: on-failure
     command: bash -c 'sh /scripts/accuser.sh'
