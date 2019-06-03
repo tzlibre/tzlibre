@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-/tzlibre/tzlibre-endorser-003-PsWqDswK -A node run
+/tzlibre/tzlibre-endorser-004-PstsZhmG -A node run
