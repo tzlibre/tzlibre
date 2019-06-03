@@ -9,13 +9,15 @@ doc:          "https://tezos.gitlab.io/irmin-lmdb/"
 synopsis:     "LMDB backend for Irmin"
 
 build: [
- ["dune" "subst"] {pinned}
- ["dune" "build" "-p" name "-j" jobs]
+  [ "dune" "subst" ] {pinned}
+  [ "dune" "build" "-p" name "-j" jobs ]
 ]
-run-test: ["dune" "runtest" "-p" name]
+run-test: [
+  [ "dune" "runtest" "-p" name ]
+]
 
 depends: [
-  "dune" {build & >= "1.0.1"}
+  "dune" {build & >= "1.7"}
   "irmin"    {>= "1.4.0"}
   "lmdb"     {>= "0.1"}
 ]

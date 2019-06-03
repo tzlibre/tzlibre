@@ -40,7 +40,7 @@ let devnet () =
       \    The node you are connecting to claims to be running on the@,\
       \               @{<warning>TzLibre Devnet DEVELOPMENT NETWORK@}.@,\
       \         Do @{<warning>NOT@} use your fundraiser keys on this network.@,\
-       Devnet is a testing network, with free tokens and frequent resets.@]@\n@."
+        Devnet is a testing network, with free tokens and frequent resets.@]@\n@."
 
 let testnet () =
   if not disable_disclaimer then
@@ -49,7 +49,7 @@ let testnet () =
       \               This is @{<warning>NOT@} the TzLibre Mainnet.@,\
        @,\
       \   The node you are connecting to claims to be running on the@,\
-      \             @{<warning>TzLibre Testnet DEVELOPMENT NETWORK.@}@,\
+      \             @{<warning>Tezos Alphanet DEVELOPMENT NETWORK.@}@,\
       \        Do @{<warning>NOT@} use your fundraiser keys on this network.@,\
       \        Testnet is a testing network, with free tokens.@]@\n@."
 
@@ -59,7 +59,7 @@ let mainnet () =
       "@[<v 2>@{<warning>@{<title>Disclaimer@}@}@,\
        The  TzLibre  network  is  a  new  blockchain technology.@,\
        Users are  solely responsible  for any risks associated@,\
-       with usage of the TzLibre network.  Users should do their@,\
+       with usage of the Tezos network.  Users should do their@,\
        own  research to determine  if TzLibre is the appropriate@,\
        platform for their needs and should apply judgement and@,\
        care in their network interactions.@]@\n@."
@@ -74,11 +74,9 @@ let sandbox () =
        You should not see this message if you are not a developer.@]@\n@."
 
 let check_network ctxt =
-  Shell_services.P2p.versions ctxt >>= function
-  | Error _
-  | Ok [] ->
-      Lwt.return_none
-  | Ok (version :: _) ->
+  Shell_services.P2p.version ctxt >>= function
+  | Error _ -> Lwt.return_none
+  | Ok version ->
       let has_prefix prefix =
         String.has_prefix ~prefix (version.chain_name :> string) in
       if has_prefix "SANDBOXED" then begin
@@ -98,7 +96,7 @@ let check_network ctxt =
 
 let get_commands_for_version ctxt network chain block protocol =
   Shell_services.Blocks.protocols ctxt ~chain ~block () >>= function
-  | Ok { next_protocol = version } -> begin
+  | Ok { next_protocol = version ; _ } -> begin
       match protocol with
       | None ->
           return (Some version, Client_commands.commands_for_version version network)
@@ -126,9 +124,10 @@ let get_commands_for_version ctxt network chain block protocol =
           return (Some version, Client_commands.commands_for_version version network)
     end
 
-let select_commands ctxt { chain ; block ; protocol } =
+let select_commands ctxt { chain ; block ; protocol ; _ } =
   check_network ctxt >>= fun network ->
-  get_commands_for_version ctxt network chain block protocol >>|? fun (_, commands_for_version)  ->
+  get_commands_for_version
+    ctxt network chain block protocol >>|? fun (_, commands_for_version)  ->
   Client_rpc_commands.commands @
   Tezos_signer_backends.Ledger.commands () @
   Client_keys_commands.commands network @

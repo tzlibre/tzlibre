@@ -97,8 +97,8 @@ let commands version () =
           cctxt ~block:cctxt#block () >>=? fun { timestamp = v } ->
         begin
           if seconds
-          then cctxt#message "%Ld" (Time.to_seconds v)
-          else cctxt#message "%s" (Time.to_notation v)
+          then cctxt#message "%Ld" (Time.Protocol.to_seconds v)
+          else cctxt#message "%s" (Time.Protocol.to_notation v)
         end >>= fun () ->
         return_unit
       end ;
@@ -393,7 +393,7 @@ let commands version () =
       end;
   ] @
   (if version = (Some `Mainnet) then [] else [
-      command ~group ~desc:"Get funds through Devnet/Testnet Faucet."
+      command ~group ~desc:"Register and activate an Alphanet/Zeronet faucet account."
         (args2
            (Secret_key.force_switch ())
            encrypted_switch)
@@ -401,7 +401,7 @@ let commands version () =
          @@ Secret_key.fresh_alias_param
          @@ prefixes [ "with" ]
          @@ param ~name:"activation_key"
-           ~desc:"Get funds through Devnet/Testnet Faucet."
+           ~desc:"Activate an Alphanet/Zeronet faucet account from the downloaded JSON file."
            file_parameter
          @@ stop)
         (fun (force, encrypted) name activation_key_file cctxt ->

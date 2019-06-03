@@ -1,0 +1,133 @@
+version: '3'
+
+volumes:
+  client_data:
+  node_data:
+
+services:
+  node:
+    image: tezos/tezos:latest
+    hostname: node
+    command: tezos-node
+    ports:
+      - 9732:9732
+    expose:
+      - '8732'
+    volumes:
+      - node_data:/var/run/tezos/node
+      - client_data:/var/run/tezos/client
+    restart: on-failure
+
+  ## Duplicate the `baker/endorser/accuser` containers for each PROTOCOL
+  ## in file `active_protocol_versions`
+  baker:
+    image: tezos/tezos:latest
+    hostname: baker-003-PsddFKi3
+    environment:
+      - PROTOCOL=003-PsddFKi3
+    command: tezos-baker
+    links:
+      - node
+    volumes:
+      - node_data:/var/run/tezos/node:ro
+      - client_data:/var/run/tezos/client
+    restart: on-failure
+
+  endorser:
+    image: tezos/tezos:latest
+    hostname: endorser-003-PsddFKi3
+    environment:
+      - PROTOCOL=003-PsddFKi3
+    command: tezos-endorser
+    links:
+      - node
+    volumes:
+      - client_data:/var/run/tezos/client
+    restart: on-failure
+
+  accuser:
+    image: tezos/tezos:latest
+    hostname: accuser-003-PsddFKi3
+    environment:
+      - PROTOCOL=003-PsddFKi3
+    command: tezos-accuser
+    links:
+      - node
+    volumes:
+      - client_data:/var/run/tezos/client
+    restart: on-failure
+
+    # protocol A
+  baker-004-PstsZhmG:
+    image: tezos/tezos:latest
+    hostname: baker-004-PstsZhmG
+    environment:
+      - PROTOCOL=004-PsGLNcdz
+    command: tezos-baker
+    links:
+      - node
+    volumes:
+      - node_data:/var/run/tezos/node:ro
+      - client_data:/var/run/tezos/client
+    restart: on-failure
+
+  endorser-004-PstsZhmG:
+    image: tezos/tezos:latest
+    hostname: endorser-004-PstsZhmG
+    environment:
+      - PROTOCOL=004-PsGLNcdz
+    command: tezos-endorser
+    links:
+      - node
+    volumes:
+      - client_data:/var/run/tezos/client
+    restart: on-failure
+
+  accuser-004-PstsZhmG:
+    image: tezos/tezos:latest
+    hostname: accuser-004-PstsZhmG
+    environment:
+      - PROTOCOL=004-PsGLNcdz
+    command: tezos-accuser
+    links:
+      - node
+    volumes:
+      - client_data:/var/run/tezos/client
+    restart: on-failure
+
+  baker-004-PstsZhmG-test:
+    image: tezos/tezos:latest
+    hostname: baker-004-PstsZhmG-test
+    environment:
+      - PROTOCOL=004-PsGLNcdz
+    command: tezos-baker-test
+    links:
+      - node
+    volumes:
+      - node_data:/var/run/tezos/node:ro
+      - client_data:/var/run/tezos/client
+    restart: on-failure
+
+  endorser-004-PstsZhmG-test:
+    image: tezos/tezos:latest
+    hostname: endorser-004-PstsZhmG-test
+    environment:
+      - PROTOCOL=004-PsGLNcdz
+    command: tezos-endorser-test
+    links:
+      - node
+    volumes:
+      - client_data:/var/run/tezos/client
+    restart: on-failure
+
+  accuser-004-PstsZhmG-test:
+    image: tezos/tezos:latest
+    hostname: accuser-004-PstsZhmG-test
+    environment:
+      - PROTOCOL=004-PsGLNcdz
+    command: tezos-accuser-test
+    links:
+      - node
+    volumes:
+      - client_data:/var/run/tezos/client
+    restart: on-failure

@@ -6,7 +6,7 @@ usage="Usage:
 $ ./scripts/activate_protocol.sh src/proto_004_PtDPBVyN
 Inserts the protocol in the right files of the build system to compile it
 If in master activates in addition to alpha.
-If in mainnet activates in addition to its predecessor, here proto_003_PsWqDswK."
+If in mainnet activates in addition to its predecessor, here proto_003_PsddFKi3."
 
 script_dir="$(cd "$(dirname "$0")" && echo "$(pwd -P)/")"
 cd "$script_dir"/..
@@ -18,13 +18,13 @@ fi
 
 is_mainnet () {
     # need to check a real file because of phantom git directories
-    if [ -f "src/proto_000_Ps9mPmXa/lib_protocol/src/TEZOS_PROTOCOL" ]
+    if [ -f "src/proto_000_Ps9mPmXa/lib_protocol/TEZOS_PROTOCOL" ]
     then return 0; else return 1; fi
 }
 
 new_version=$(basename $1 | awk -F'_' '{print $2}')
 new_hash=$(basename $1 | awk -F'_' '{print $3}')
-full_hash=$(jq .hash < $1/lib_protocol/src/TEZOS_PROTOCOL)
+full_hash=$(jq .hash < $1/lib_protocol/TEZOS_PROTOCOL)
 replacement=${new_version}-${new_hash}
 if [[ -z "${new_version}" || -z "${new_hash}" || -z "${full_hash}" ]] ; then
     echo "$usage"
@@ -84,6 +84,7 @@ if [[ "$ans" == "Y" || "$ans" == "y" || -z "$ans" ]]; then
         { if (!found){print}}
        }}' src/lib_base/block_header.ml
 
-    sed -i '/let forced_protocol_upgrades/ a \ \ 3l, Protocol_hash.of_b58check_exn '${full_hash}' ;' \
+    sed -i.old '/let forced_protocol_upgrades/ a \ \ 3l, Protocol_hash.of_b58check_exn '${full_hash}' ;' \
         src/lib_base/block_header.ml
+    rm src/lib_base/block_header.ml.old
 fi

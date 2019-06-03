@@ -8,6 +8,13 @@ __pycache__
 /_build
 /_opam
 /_docker_build
+/docs/_build
+/docs/api/tezos-client.html
+/docs/api/tezos-admin-client.html
+/docs/api/tezos-signer.html
+/docs/api/tezos-accuser-alpha.html
+/docs/api/tezos-baker-alpha.html
+/docs/api/tezos-endorser-alpha.html
 
 /tzlibre-node
 /tzlibre-protocol-compiler
@@ -17,9 +24,15 @@ __pycache__
 /tzlibre-endorser-*
 /tzlibre-accuser-*
 /tzlibre-signer
+/tzlibre-sandbox
 
 /scripts/opam-test-all.sh.DONE
 /scripts/create_genesis/src
+
+/docs/introduction/readme.rst
+/docs/api/errors.rst
+/docs/api/rpc.rst
+/docs/api/p2p.rst
 
 /src/bin_client/test/LOG.*
 
@@ -38,4 +51,4 @@ dune-project
 *.rej
 *.orig
 
-.\#*
+.idea

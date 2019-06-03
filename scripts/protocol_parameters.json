@@ -2,6 +2,10 @@
   "bootstrap_accounts": [
     [
       "edpktw5g4dbMPt4RsGLUfK8GB8oLiC5MdmAAu8TKNUZVaaAJN8Gv91",
+      "10000000000000"
+    ],
+    [
+      "tz1N17Zdbfq5VEASZEGApfcaWmSYJMcnvBeN",
       "2000000000000000"
     ]
   ],

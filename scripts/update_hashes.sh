@@ -16,12 +16,12 @@ fi
 
 set -e
 
-current_hash_genesis=`jq '.hash' < src/proto_genesis/lib_protocol/src/TEZOS_PROTOCOL | tr -d '"'`
+current_hash_genesis=`jq '.hash' < src/proto_000_Ps9mPmXa/lib_protocol/src/TEZOS_PROTOCOL | tr -d '"'`
 echo "Genesis's current hash: $current_hash_genesis"
 genesis_tmpdir=`mktemp -d`
 mkdir $genesis_tmpdir/src
-cp src/proto_genesis/lib_protocol/src/*.ml src/proto_genesis/lib_protocol/src/*.mli $genesis_tmpdir/src/
-grep -v '"hash"' < src/proto_genesis/lib_protocol/src/TEZOS_PROTOCOL > $genesis_tmpdir/src/TEZOS_PROTOCOL
+cp src/proto_000_Ps9mPmXa/lib_protocol/src/*.ml src/proto_000_Ps9mPmXa/lib_protocol/src/*.mli $genesis_tmpdir/src/
+grep -v '"hash"' < src/proto_000_Ps9mPmXa/lib_protocol/src/TEZOS_PROTOCOL > $genesis_tmpdir/src/TEZOS_PROTOCOL
 new_hash_genesis=`./tezos-protocol-compiler -hash-only $genesis_tmpdir/tmp $genesis_tmpdir/src`
 echo "Genesis's new hash: $new_hash_genesis"
 if [ "$current_hash_genesis" != "$new_hash_genesis" ]

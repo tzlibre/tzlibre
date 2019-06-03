@@ -39,4 +39,3 @@ src/bin_client/test/LOG.*
 .git
 .gitignore
 .gitlab-ci.yml
-

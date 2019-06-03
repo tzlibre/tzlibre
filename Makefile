@@ -37,7 +37,7 @@ endif
 	   cp _build/default/src/proto_$$p/bin_accuser/main_accuser_$$p.exe tzlibre-accuser-`echo $$p | tr -- _ -` ; \
 	 done
 
-PROTOCOLS := 000_Ps9mPmXa 001_PtCJ7pwo 002_PsYLVpVv 003_PsWqDswK demo
+PROTOCOLS := 000_Ps9mPmXa 001_PtCJ7pwo 002_PsYLVpVv 003_PsddFKi3 004_PstsZhmG demo
 DUNE_INCS=$(patsubst %,src/proto_%/lib_protocol/dune.inc, ${PROTOCOLS})
 
 generate_dune: ${DUNE_INCS}
@@ -59,7 +59,30 @@ $(addsuffix .test,${PACKAGES}): %.test:
 	@dune build \
 	    @$(patsubst %/$*.opam,%,$(shell find src vendors -name $*.opam))/runtest
 
-build-test:
+doc-html: all
+	@dune build @doc
+	@./tzlibre-client -protocol PsddFKi32cMJ2qPjf43Qv5GDWLDPZb3T3bF6fLKiF5HtvHNU7aP man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tzlibre-client.html
+	@./tzlibre-admin-client man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tzlibre-admin-client.html
+	@./tzlibre-signer man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tzlibre-signer.html
+	@./tzlibre-baker-alpha man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tzlibre-baker-alpha.html
+	@./tzlibre-endorser-alpha man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tzlibre-endorser-alpha.html
+	@./tzlibre-accuser-alpha man -verbosity 3 -format html | sed "s#${HOME}#\$$HOME#g" > docs/api/tzlibre-accuser-alpha.html
+	@mkdir -p $$(pwd)/docs/_build/api/odoc
+	@rm -rf $$(pwd)/docs/_build/api/odoc/*
+	@cp -r $$(pwd)/_build/default/_doc/* $$(pwd)/docs/_build/api/odoc/
+	@${MAKE} -C docs html
+	@echo '@media (min-width: 745px) {.content {margin-left: 4ex}}' >> $$(pwd)/docs/_build/api/odoc/_html/odoc.css
+	@sed -e 's/@media only screen and (max-width: 95ex) {/@media only screen and (max-width: 744px) {/' $$(pwd)/docs/_build/api/odoc/_html/odoc.css > $$(pwd)/docs/_build/api/odoc/_html/odoc.css2
+	@mv $$(pwd)/docs/_build/api/odoc/_html/odoc.css2  $$(pwd)/docs/_build/api/odoc/_html/odoc.css
+
+doc-html-and-linkcheck: doc-html
+	@${MAKE} -C docs all
+
+build-sandbox:
+	@dune build src/bin_flextesa/main.exe
+	@cp _build/default/src/bin_flextesa/main.exe tzlibre-sandbox
+
+build-test: build-sandbox
 	@dune build @buildtest
 
 test:
@@ -90,6 +113,7 @@ uninstall:
 
 clean:
 	@-dune clean
+	@-find . -name dune-project -delete
 	@-rm -f \
 		tzlibre-node \
 		tzlibre-client \
@@ -97,5 +121,7 @@ clean:
 		tzlibre-admin-client \
 		tzlibre-protocol-compiler \
 	  $(foreach p, $(active_protocol_versions), tzlibre-baker-$(p) tzlibre-endorser-$(p) tzlibre-accuser-$(p))
+	@-${MAKE} -C docs clean
+	@-rm -f docs/api/tzlibre-{baker,endorser,accuser}-alpha.html docs/api/tzlibre-{admin-,}client.html docs/api/tzlibre-signer.html
 
 .PHONY: all test build-deps docker-image clean

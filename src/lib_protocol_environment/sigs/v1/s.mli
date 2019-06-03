@@ -50,7 +50,7 @@ module type HASHABLE = sig
 
 end
 
-(** {2 Hash Types} ************************************************************)
+(** {2 Hash Types} *)
 
 (** The signature of an abstract hash type, as produced by functor
     {!Make_SHA256}. The {!t} type is abstracted for separating the
@@ -186,12 +186,12 @@ module type INDEXES = sig
   val path_length: int
 
   module Set : sig
-    include Set.S with type elt = t
+    include Stdlib.Set.S with type elt = t
     val encoding: t Data_encoding.t
   end
 
   module Map : sig
-    include Map.S with type key = t
+    include Stdlib.Map.S with type key = t
     val encoding: 'a Data_encoding.t -> 'a t Data_encoding.t
   end
 

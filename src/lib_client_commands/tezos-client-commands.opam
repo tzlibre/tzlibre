@@ -7,12 +7,13 @@ dev-repo: "git+https://gitlab.com/tezos/tezos.git"
 license: "MIT"
 depends: [
   "ocamlfind" { build }
-  "dune" { build & >= "1.0.1" }
+  "dune" { build & >= "1.7" }
   "tezos-base"
   "tezos-client-base"
   "tezos-rpc"
   "tezos-shell-services"
   "tezos-signer-backends"
+  "tezos-stdlib-unix"
 ]
 build: [
   [ "dune" "build" "-p" name "-j" jobs ]
