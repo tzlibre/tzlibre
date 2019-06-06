@@ -4,10 +4,10 @@
 - [Requirements](#requirements)
 - [Run with Docker](#install-docker-and-docker-compose)
 - [How to bake](#how-to-bake)
-- [Check your installation](#check-your-installation)
+- [Check your install](#check-your-install)
 - [Check network status](#check-network-status)
 - [Faucet](#faucet)
-- [F.A.Q. on current devnet parametrization](#faq-on-current-devnet-parametrization)
+- [FAQ on current devnet parametrization](#faq)
 - [Build from sources](#build-from-sources-advanced-users)
 
 ## Requirements
@@ -253,7 +253,12 @@ Halving period is incremented each 32 cycles (~ 35 hours).
 Halving factor is then computed as `2 ^ halving_period`.
 
 ### Q5. How do I find out when's my turn to bake?
-Choose a block_number and call http://rpc.devnet.tzlibre.io/chains/main/blocks/head/helpers/baking_rights?level=[block_number]
+Choose a `block_number` and call:
+
+```
+http://rpc.devnet.tzlibre.io/chains/main/blocks/head/helpers/baking_rights?level=<block_number>
+```
+
 
 ### Q6. Where are my private key?
 Your keys are here: `~/.tzlibre-node-client-devnet`
