@@ -1,14 +1,22 @@
 # TzLibre devnet
 
-## Requirements
+## TOC
+- [Requirements](#requirements)
+- [Run with Docker](#install-docker-and-docker-compose)
+- [How to bake](#how-to-bake)
+- [Check your installation](#check-your-installation)
+- [Check network status](#check-network-status)
+- [Faucet](#faucet)
+- [F.A.Q. on current devnet parametrization](#faq-on-current-devnet-parametrization)
+- [Build from sources](#build-from-sources-advanced-users)
 
+## Requirements
 - Minimum: 2GB RAM, 100GB storage
 - Recommended: 8GB RAM, 1TB storage
 - SSD recommended
 - No static IP address required
 
 ## Run with Docker
-
 ### Install Docker and docker-compose
 
 #### 1. Install Docker
@@ -32,18 +40,58 @@ docker pull tzlibre/tzlibre
 docker pull tzlibre/tzlibre:devnet
 ```
 
-#### 5. Cleanup old data
-If you ran a previous version of TzLibre devnet, clean it up:
+#### 5. Cleanup previous installs
+If you never installed a TzLibre devnet node: skip this section.
+
+##### 5.0 Move into `tzlibre` repository folder
+
+```
+cd tzlibre
+```
+
+> If you cloned the repository into a different or nested folder, make sure to `cd` into that very folder. 
+
+##### 5.1 Stop any previously running Docker container
+
+```
+docker-compose -f composes/docker-compose-devnet.yml stop
+```
+
+##### 5.2 Destroy any previous Docker container
+
+```
+docker-compose -f composes/docker-compose-devnet.yml rm
+```
+
+##### 5.3 Cleanup old data from disk
 
 ```
 sudo rm -rf ~/.tzlibre-node-devnet ~/.tzlibre-client-devnet ~/.tzlibre-signer-devnet
 ```
 
-#### 6. Clone repository and run a TzLibre devnet `node`
+> This is a mandatory step. 
+> Old keys will be destroyed (you'll be able to get up to 10M TZL devnet coins for each faucet request).
+
+#### 6. Clone (or update) repository and run a TzLibre devnet `node`
+Clone or update the repository. 
+
+If you never cloned the repository before, clone it:
 
 ```
 git clone https://github.com/tzlibre/tzlibre.git
 cd tzlibre
+```
+
+Otherwise, if you previously cloned the repository, update it:
+
+```
+cd tzlibre
+git pull origin devnet
+```
+
+Then run the node:
+
+```
 docker-compose -f composes/docker-compose-devnet.yml up -d node && docker-compose -f composes/docker-compose-devnet.yml logs -f node
 ```
 
@@ -167,7 +215,55 @@ docker-compose -f composes/docker-compose-devnet.yml <stop|restart> <baker,endor
 docker-compose -f composes/docker-compose-devnet.yml logs -f <baker,endorser,accuser>
 ```
 
-- - -
+
+## Check your install
+Check if you are correctly running the latest version of the software, and that you are actually connected to the latest chain:
+
+```
+cd tzlibre
+docker-compose -f composes/docker-compose-devnet.yml up status
+```
+
+## Check network status
+
+Devnet is a development network, it's regularly restarted and can be put in maintenance mode. 
+Check [here](http://status.devnet.tzlibre.io) the current status of the network.
+
+
+## Faucet
+Get TZL devnet coins at the [Faucet](http://faucet.devnet.tzlibre.io). 
+For each request the faucet delivers from 1M TZL up to 10M TZL.
+
+
+## FAQ
+### Q1. How long is a cycle?
+A cycle is composed by 128 blocks and lasts about 1 hour.
+
+### Q2. When will I be able to bake my first block?
+After 7 cycles, almost 8 hours.
+
+### Q3. What rewards should I expect?
+- bake:  `16 / halving_factor` TZL
+- endorse: `2 / halving_factor` TZL
+- seed nonce revelation: `0.125 / halving_factor` TZL
+
+### Q4. How is halving computed?
+Halving factor depends on the halving period. 
+Halving period is incremented each 32 cycles (~ 35 hours). 
+Halving factor is then computed as `2 ^ halving_period`.
+
+### Q5. How do I find out when's my turn to bake?
+Choose a block_number and call http://rpc.devnet.tzlibre.io/chains/main/blocks/head/helpers/baking_rights?level=[block_number]
+
+### Q6. Where are my private key?
+Your keys are here: `~/.tzlibre-node-client-devnet`
+
+--- 
+```
+```
+---
+
+
 
 ## Build from sources (advanced users)
 If you prefer to build the TzLibre node from source follow these steps:
