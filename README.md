@@ -7,7 +7,7 @@
 - [Check your install](#check-your-install)
 - [Check network status](#check-network-status)
 - [Faucet](#faucet)
-- [FAQ on current devnet parametrization](#faq)
+- [FAQ](#faq)
 - [Build from sources](#build-from-sources-advanced-users)
 
 ## Requirements
