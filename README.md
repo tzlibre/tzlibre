@@ -161,12 +161,19 @@ Use the [block explorer](http://librexplorer.devnet.tzlibre.io/) or the command 
 tzlibre-client get balance for my_awesome_baker
 ```
 
-#### 2. Register as delegate
+#### 2. Wait for bootstrap
+
+Wait until your node has bootstrapped (connection and synch). Depending on bandwidth and chain length it may take anything between 30 minutes and few hours. [Check status](#check-status).
+Make sure your node has bootstrapped before moving to step 3.
+
+#### 3. Register as delegate
 ```
 tzlibre-client register key "my_awesome_baker" as delegate
 ```
 
-> `tzlibre-client` will wait for node bootstrap (synch and connection) before issuing the related transaction (this may take a while).
+> If node hasn't bootstrapped you might this error
+"Node is bootstrapped, ready for injecting operations.
+Error: Empty implicit contract". This may be caused by an incomplete bootstrap, you must wait for a complete bootstrap.
 
 ### Conclusion
 Detach `node` container (Docker users only). Exit container with `Ctrl-d`. 
@@ -178,6 +185,7 @@ Detach `node` container (Docker users only). Exit container with `Ctrl-d`.
 #### Start `baker`
 
 ```
+cd tzlibre
 docker-compose -f composes/docker-compose-devnet.yml up -d baker && docker-compose -f composes/docker-compose-devnet.yml logs -f baker
 ```
 
@@ -216,18 +224,13 @@ docker-compose -f composes/docker-compose-devnet.yml logs -f <baker,endorser,acc
 ```
 
 
-## Check your install
-Check if you are correctly running the latest version of the software, and that you are actually connected to the latest chain:
+## Check status
+Check network and node status (software version, latest chain, chain mode):
 
 ```
 cd tzlibre
 docker-compose -f composes/docker-compose-devnet.yml up status
 ```
-
-## Check network status
-
-Devnet is a development network, it's regularly restarted and can be put in maintenance mode. 
-Check [here](http://status.devnet.tzlibre.io) the current status of the network.
 
 
 ## Faucet
@@ -259,9 +262,11 @@ Choose a `block_number` and call:
 http://rpc.devnet.tzlibre.io/chains/main/blocks/head/helpers/baking_rights?level=<block_number>
 ```
 
-
 ### Q6. Where are my private keys?
 Your keys are here: `~/.tzlibre-node-client-devnet`
+
+### Q7. How long does it take to bootstrap?
+Depending on your connection and on chain length it can take anything between 30 minutes and a few hours.
 
 --- 
 ```
