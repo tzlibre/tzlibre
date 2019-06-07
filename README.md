@@ -227,7 +227,7 @@ Check network and node status (software version, latest chain, chain mode):
 
 ```
 cd tzlibre
-docker-compose -f composes/docker-compose-devnet.yml up status
+./composes/scripts/status.sh
 ```
 
 

@@ -44,8 +44,10 @@ services:
     restart: on-failure
     command: bash -c 'sh /scripts/accuser.sh'
   status:
-    image: tzlibre/check-chain
+    image: tzlibre/check-chain:2
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./scripts:/scripts
+      - ~/.tzlibre-client-devnet:/root/.tzlibre-client
+      - ../.git:/.git
     command: bash -c '/scripts/check.sh'
