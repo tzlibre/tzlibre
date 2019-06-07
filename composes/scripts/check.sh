@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-LOCAL_COMMIT=$(git --git-dir .git rev-parse --verify master)
-REMOTE_COMMIT=$(git ls-remote https://github.com/tzlibre/tzlibre.git | grep HEAD | awk '{print $1}')
+LOCAL_COMMIT=$(git --git-dir .git rev-parse --verify devnet)
+REMOTE_COMMIT=$(git ls-remote https://github.com/tzlibre/tzlibre.git devnet | awk '{print $1}')
 if [[ "$LOCAL_COMMIT" == "$REMOTE_COMMIT" ]]; then
     echo "Git repo latest version   [YES]"
 else
