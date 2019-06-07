@@ -260,7 +260,7 @@ http://rpc.devnet.tzlibre.io/chains/main/blocks/head/helpers/baking_rights?level
 ```
 
 
-### Q6. Where are my private key?
+### Q6. Where are my private keys?
 Your keys are here: `~/.tzlibre-node-client-devnet`
 
 --- 

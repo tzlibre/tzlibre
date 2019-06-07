@@ -10,7 +10,7 @@ fi
 CURRENT_BLOCK=$(curl -s http://node:8732/monitor/bootstrapped | jq .block)
 LIVE_BLOCK=$(curl -s http://rpc.devnet.tzlibre.io/monitor/bootstrapped | jq .block)
 if [[ "$CURRENT_BLOCK" == "$LIVE_BLOCK" ]]; then
-    echo "Node bootstrapped [YES]"
+    echo "Node bootstrapped     [YES]"
 else
     echo "Node bootstrapped     [NO]"
 fi
@@ -37,7 +37,7 @@ else
     echo "Baker up              [NO]"
 fi
 
-ACCUSER_UP=$(docker ps | grep tzlibre_ACCUSER | grep -v Restarting | wc | awk '{print $1}')
+ACCUSER_UP=$(docker ps | grep tzlibre_accuser | grep -v Restarting | wc | awk '{print $1}')
 if [[ "$ACCUSER_UP" == "1" ]]; then
     echo "Accuser up            [YES]"
 else
