@@ -4,10 +4,10 @@
 - [Requirements](#requirements)
 - [Run with Docker](#install-docker-and-docker-compose)
 - [How to bake](#how-to-bake)
-- [Check your install](#check-your-install)
-- [Check network status](#check-network-status)
+- [Check status](#check-status)
 - [Faucet](#faucet)
 - [FAQ](#faq)
+- [Troubleshooting](#troubleshooting)
 - [Build from sources](#build-from-sources-advanced-users)
 
 ## Requirements
@@ -171,9 +171,7 @@ Make sure your node has bootstrapped before moving to step 3.
 tzlibre-client register key "my_awesome_baker" as delegate
 ```
 
-> If node hasn't bootstrapped you might this error
-"Node is bootstrapped, ready for injecting operations.
-Error: Empty implicit contract". This may be caused by an incomplete bootstrap, you must wait for a complete bootstrap.
+> If node hasn't bootstrapped you might [this error](#E2)
 
 ### Conclusion
 Detach `node` container (Docker users only). Exit container with `Ctrl-d`. 
@@ -268,11 +266,22 @@ Your keys are here: `~/.tzlibre-node-client-devnet`
 ### Q7. How long does it take to bootstrap?
 Depending on your connection and on chain length it can take anything between 30 minutes and a few hours.
 
+## Troubleshooting
+
+### E1
+"Fatal error: Resource temporarily unavailable"
+Sync incomplete, please wait.
+
+### E2
+"Node is bootstrapped, ready for injecting operations.
+Error: Empty implicit contract". 
+Incomplete bootstrap, wait for a complete bootstrap.
+
+
 --- 
 ```
 ```
 ---
-
 
 
 ## Build from sources (advanced users)
