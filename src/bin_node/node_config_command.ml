@@ -29,7 +29,7 @@ let () =
   Prevalidator_filters.register
     (module Tezos_mempool_003_PsddFKi3.Filter) ;
   Prevalidator_filters.register
-    (module Tezos_mempool_004_PstsZhmG.Filter)
+    (module Tezos_mempool_005_Brest.Filter)
 
 (** Commands *)
 

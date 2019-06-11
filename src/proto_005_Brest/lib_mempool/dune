@@ -1,0 +1,16 @@
+(library
+ (name tezos_mempool_005_Brest)
+ (public_name tezos-mempool-005-Brest)
+ (libraries tezos-base
+            tezos-embedded-protocol-005-Brest)
+ (flags (:standard -w -9+27-30-32-40@8
+                   -safe-string
+                   -open Tezos_base__TzPervasives
+                   -open Tezos_embedded_raw_protocol_005_Brest
+                   -open Tezos_embedded_protocol_005_Brest
+                   -open Tezos_embedded_protocol_environment_005_Brest)))
+
+(alias
+ (name runtest_indent)
+ (deps (glob_files *.ml{,i}))
+ (action (run bash %{libexec:tezos-stdlib:test-ocp-indent.sh} %{deps})))

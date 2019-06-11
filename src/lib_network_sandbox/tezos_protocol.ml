@@ -36,11 +36,11 @@ module Script = struct
           Tezos_error_monad.Error_monad.pp_print_error el
 
   let exn_shell msg res =
-    Tezos_client_004_PstsZhmG.Proto_alpha.Alpha_environment.wrap_error res
+    Tezos_client_005_Brest.Proto_alpha.Alpha_environment.wrap_error res
     |> exn_tezos msg
 
   let parse exprs =
-    Tezos_client_004_PstsZhmG.Michelson_v1_parser.(
+    Tezos_client_005_Brest.Michelson_v1_parser.(
       (parse_expression exprs |> fst).expanded)
 
   let code_of_json_exn s =
@@ -48,16 +48,16 @@ module Script = struct
     | Ok json ->
         let repr =
           Tezos_data_encoding.Data_encoding.Json.destruct
-            Tezos_client_004_PstsZhmG.Proto_alpha.Script_repr.encoding json
+            Tezos_client_005_Brest.Proto_alpha.Script_repr.encoding json
         in
         let ( (expr_code :
-                Tezos_client_004_PstsZhmG.Proto_alpha.Michelson_v1_primitives.prim
+                Tezos_client_005_Brest.Proto_alpha.Michelson_v1_primitives.prim
                 Tezos_micheline.Micheline.canonical)
             , _ ) =
-          Tezos_client_004_PstsZhmG.Proto_alpha.Script_repr.(force_decode repr.code)
+          Tezos_client_005_Brest.Proto_alpha.Script_repr.(force_decode repr.code)
           |> exn_shell "decoding script-repr"
         in
-        let module Alph = Tezos_client_004_PstsZhmG.Proto_alpha in
+        let module Alph = Tezos_client_005_Brest.Proto_alpha in
         let strings_node =
           Alph.Michelson_v1_primitives.strings_of_prims expr_code
           |> Alph.Alpha_environment.Micheline.root
@@ -73,8 +73,8 @@ module Script = struct
   let json_script_repr code storage =
     match
       Tezos_data_encoding.Data_encoding.Json.construct
-        Tezos_client_004_PstsZhmG.Proto_alpha.Script_repr.encoding
-        Tezos_client_004_PstsZhmG.Proto_alpha.Script_repr.
+        Tezos_client_005_Brest.Proto_alpha.Script_repr.encoding
+        Tezos_client_005_Brest.Proto_alpha.Script_repr.
           {code= lazy_expr code; storage= lazy_expr storage}
     with
     | `O _ as o -> (o : Ezjsonm.t)
@@ -219,7 +219,7 @@ let default () =
   ; bootstrap_contracts= [(dictator, 10_000_000, `Sandbox_faucet)]
   ; expected_pow= 1
   ; name= "alpha"
-  ; hash= "PstsZhmGXeeF96vZW5arv213UkLooAVzbn4ojSYus3PnjFMiiHR"
+  ; hash= "Psmd39RbdEvXSomjufaEvtZPx8UC6mtCpzA3Huy16qoMG7GS5aB"
   ; time_between_blocks= [2; 3]
   ; blocks_per_roll_snapshot= 4
   ; blocks_per_voting_period= 16

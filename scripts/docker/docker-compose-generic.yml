@@ -58,9 +58,9 @@ services:
     restart: on-failure
 
     # protocol A
-  baker-004-PstsZhmG:
+  baker-005-Brest:
     image: tezos/tezos:latest
-    hostname: baker-004-PstsZhmG
+    hostname: baker-005-Brest
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-baker
@@ -71,9 +71,9 @@ services:
       - client_data:/var/run/tezos/client
     restart: on-failure
 
-  endorser-004-PstsZhmG:
+  endorser-005-Brest:
     image: tezos/tezos:latest
-    hostname: endorser-004-PstsZhmG
+    hostname: endorser-005-Brest
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-endorser
@@ -83,9 +83,9 @@ services:
       - client_data:/var/run/tezos/client
     restart: on-failure
 
-  accuser-004-PstsZhmG:
+  accuser-005-Brest:
     image: tezos/tezos:latest
-    hostname: accuser-004-PstsZhmG
+    hostname: accuser-005-Brest
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-accuser
@@ -95,9 +95,9 @@ services:
       - client_data:/var/run/tezos/client
     restart: on-failure
 
-  baker-004-PstsZhmG-test:
+  baker-005-Brest-test:
     image: tezos/tezos:latest
-    hostname: baker-004-PstsZhmG-test
+    hostname: baker-005-Brest-test
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-baker-test
@@ -108,9 +108,9 @@ services:
       - client_data:/var/run/tezos/client
     restart: on-failure
 
-  endorser-004-PstsZhmG-test:
+  endorser-005-Brest-test:
     image: tezos/tezos:latest
-    hostname: endorser-004-PstsZhmG-test
+    hostname: endorser-005-Brest-test
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-endorser-test
@@ -120,9 +120,9 @@ services:
       - client_data:/var/run/tezos/client
     restart: on-failure
 
-  accuser-004-PstsZhmG-test:
+  accuser-005-Brest-test:
     image: tezos/tezos:latest
-    hostname: accuser-004-PstsZhmG-test
+    hostname: accuser-005-Brest-test
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-accuser-test

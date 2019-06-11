@@ -23,13 +23,13 @@
 (*                                                                           *)
 (*****************************************************************************)
 
-module Name = struct let name = "004-PstsZhmG" end
+module Name = struct let name = "005-Brest" end
 module Alpha_environment = Tezos_protocol_environment_memory.MakeV1(Name)()
 
 type alpha_error = Alpha_environment.Error_monad.error
 type 'a alpha_tzresult = 'a Alpha_environment.Error_monad.tzresult
 
-module Proto = Tezos_protocol_004_PstsZhmG.Functor.Make(Alpha_environment)
+module Proto = Tezos_protocol_005_Brest.Functor.Make(Alpha_environment)
 module Block_services = struct
   include Block_services
   include Block_services.Make(Proto)(Proto)

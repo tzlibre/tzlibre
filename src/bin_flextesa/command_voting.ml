@@ -44,7 +44,7 @@ let setup_baking_ledger state uri ~client =
 let failf fmt = ksprintf (fun s -> fail (`Scenario_error s)) fmt
 
 type voting_period =
-                    Tezos_client_004_PstsZhmG.Proto_alpha.Alpha_context.Voting_period
+                    Tezos_client_005_Brest.Proto_alpha.Alpha_context.Voting_period
                     .kind =
   | Proposal
   | Testing_vote
@@ -54,7 +54,7 @@ type voting_period =
 let voting_period_to_string (p : voting_period) =
   match
     Tezos_data_encoding.Data_encoding.Json.construct
-      Tezos_client_004_PstsZhmG.Proto_alpha.Alpha_context.Voting_period.kind_encoding
+      Tezos_client_005_Brest.Proto_alpha.Alpha_context.Voting_period.kind_encoding
       p
   with
   | `String s -> s

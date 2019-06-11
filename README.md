@@ -267,17 +267,14 @@ Your keys are here: `~/.tzlibre-node-client-devnet`
 Depending on your connection and on chain length it can take anything between 30 minutes and a few hours.
 
 ## Troubleshooting
-
-### E1
-"Fatal error: Resource temporarily unavailable"
+### E1. Fatal error: Resource temporarily unavailable
 Sync incomplete, please wait.
 
-### E2
-"Node is bootstrapped, ready for injecting operations.
-Error: Empty implicit contract". 
+### E2. Node is bootstrapped, ready for injecting operations. Error: Empty implicit contract 
 Incomplete bootstrap, wait for a complete bootstrap.
 
-
+### E3. Failed to acquire the protocol version from the node
+Ignore this warning. We are currently using unencrypted keys, encrypted keys will be introduced in a later release.
 --- 
 ```
 ```

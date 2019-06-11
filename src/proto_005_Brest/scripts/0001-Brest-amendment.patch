@@ -1,0 +1,78 @@
+From 11ae91e28fd7561331fa390ee6fcda0f1594047e Mon Sep 17 00:00:00 2001
+From: Fabrice Le Fessant <fabrice.le_fessant@ocamlpro.com>
+Date: Fri, 7 Jun 2019 17:53:07 +0200
+Subject: [PATCH] Brest amendment
+
+---
+ active_protocol_versions     | 3 ++-
+ src/bin_client/dune          | 2 ++
+ src/bin_node/dune            | 1 +
+ src/lib_base/block_header.ml | 3 +--
+ src/lib_network_sandbox/dune | 4 +++-
+ 5 files changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/active_protocol_versions b/active_protocol_versions
+index 41d83d0d4..42429b52b 100644
+--- a/active_protocol_versions
++++ b/active_protocol_versions
+@@ -1,2 +1,3 @@
+ 003-PsddFKi3
+-004-Pt24m4xi
+\ No newline at end of file
++004-Pt24m4xi
++005-Brest
+diff --git a/src/bin_client/dune b/src/bin_client/dune
+index 25f5657b1..6da4e081b 100644
+--- a/src/bin_client/dune
++++ b/src/bin_client/dune
+@@ -20,6 +20,8 @@
+             tezos-baking-003-PsddFKi3-commands.registration
+             tezos-client-004-Pt24m4xi-commands.registration
+             tezos-baking-004-Pt24m4xi-commands.registration
++            tezos-client-005-Brest-commands.registration
++            tezos-baking-005-Brest-commands.registration
+             tezos-signer-backends)
+   (flags (:standard -open Tezos_base__TzPervasives
+                     -open Tezos_rpc_http
+diff --git a/src/bin_node/dune b/src/bin_node/dune
+index ddda966af..1ade03561 100644
+--- a/src/bin_node/dune
++++ b/src/bin_node/dune
+@@ -18,6 +18,7 @@
+             tezos-mempool-002-PsYLVpVv
+             tezos-mempool-003-PsddFKi3
+             tezos-mempool-004-Pt24m4xi
++            tezos-mempool-005-Brest
+             cmdliner
+             tls)
+  (flags (:standard -open Tezos_base__TzPervasives
+diff --git a/src/lib_base/block_header.ml b/src/lib_base/block_header.ml
+index 22cda6452..bc0092d27 100644
+--- a/src/lib_base/block_header.ml
++++ b/src/lib_base/block_header.ml
+@@ -118,8 +118,7 @@ let hash block = Block_hash.hash_bytes [to_bytes block]
+ let hash_raw bytes = Block_hash.hash_bytes [bytes]
+ 
+ let forced_protocol_upgrades : (Int32.t * Protocol_hash.t) list = [
+-  28082l, Protocol_hash.of_b58check_exn "PsYLVpVvgbLhAhoqAkMFUo6gudkJ9weNXhUYCiLDzcUpFpkk8Wt" ;
+-  204761l, Protocol_hash.of_b58check_exn "PsddFKi32cMJ2qPjf43Qv5GDWLDPZb3T3bF6fLKiF5HtvHNU7aP" ;
++  2l, Protocol_hash.of_b58check_exn "PtdRxBHvc91c2ea2evV6wkoqnzW7TadTg9aqS9jAn2GbcPGtumD" ;
+ ]
+ 
+ module LevelMap =
+diff --git a/src/lib_network_sandbox/dune b/src/lib_network_sandbox/dune
+index e71d71da2..c5c53bcf2 100644
+--- a/src/lib_network_sandbox/dune
++++ b/src/lib_network_sandbox/dune
+@@ -12,5 +12,7 @@
+     genspio
+     ezjsonm
+     tezos-signer-backends
+-    tezos-client-004-Pt24m4xi))
++    tezos-client-004-Pt24m4xi
++    tezos-client-005-Brest
++))
+ 
+-- 
+2.11.0
+
