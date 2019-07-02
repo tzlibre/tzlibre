@@ -171,7 +171,7 @@ Make sure your node has bootstrapped before moving to step 3.
 tzlibre-client register key "my_awesome_baker" as delegate
 ```
 
-> If node hasn't bootstrapped you might [this error](#E2)
+> If node hasn't bootstrapped you might get [this error](#E2)
 
 ### Conclusion
 Detach `node` container (Docker users only). Exit container with `Ctrl-d`. 
@@ -275,6 +275,9 @@ Incomplete bootstrap, wait for a complete bootstrap.
 
 ### E3. Failed to acquire the protocol version from the node
 Ignore this warning. We are currently using unencrypted keys, encrypted keys will be introduced in a later release.
+
+### E4. Level previously baked
+This is caused by an incorrect halt of the baker. Please reinstall.
 --- 
 ```
 ```
