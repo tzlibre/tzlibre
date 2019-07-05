@@ -8,7 +8,7 @@ else
     echo "Git repo latest version   [NO]"
 fi
 
-CHAIN_IS_LIVE=$(node -e "console.log($(date +%s)-(new Date(\"$(curl -s http://api-explorer.devnet.tzlibre.io/v1/node_timestamps  | jq -r '.[0][1]' 2> /dev/null)\")).getTime()/1000 < 30*20)")
+CHAIN_IS_LIVE=$(node -e "console.log($(date +%s)-(new Date(\"$(curl -L --max-time 5 -s http://api-explorer.devnet.tzlibre.io/v1/node_timestamps  | jq -r '.[0][1]' 2> /dev/null)\")).getTime()/1000 < 30*20)")
 if [[ "$CHAIN_IS_LIVE" == "true" ]]; then
     echo "Devnet is up              [YES]"
 else
@@ -22,16 +22,16 @@ else
     echo "Local node is up          [NO]"
 fi
 
-CURRENT_BLOCK=$(curl -s http://node:8732/monitor/bootstrapped | jq .block 2> /dev/null)
-LIVE_BLOCK=$(curl -s http://rpc.devnet.tzlibre.io/monitor/bootstrapped | jq .block 2> /dev/null)
+CURRENT_BLOCK=$(curl -L --max-time 5 -s http://node:8732/monitor/bootstrapped | jq .block 2> /dev/null)
+LIVE_BLOCK=$(curl -L --max-time 5 -s http://rpc.devnet.tzlibre.io/monitor/bootstrapped | jq .block 2> /dev/null)
 if [[ "$CURRENT_BLOCK" == "$LIVE_BLOCK" ]]; then
     echo "Local node bootstrapped   [YES]"
 else
     echo "Local node bootstrapped   [NO]"
 fi
 
-CURRENT_CHAIN=$(curl -s http://node:8732/network/version | jq .chain_name 2> /dev/null)
-LIVE_CHAIN=$(curl -s http://rpc.devnet.tzlibre.io/network/version | jq .chain_name 2> /dev/null)
+CURRENT_CHAIN=$(curl -L --max-time 5 -s http://node:8732/network/version | jq .chain_name 2> /dev/null)
+LIVE_CHAIN=$(curl -L --max-time 5 -s http://rpc.devnet.tzlibre.io/network/version | jq .chain_name 2> /dev/null)
 if [[ "$CURRENT_CHAIN" == "$LIVE_CHAIN" ]]; then
     echo "Latest chain              [YES]"
 else
