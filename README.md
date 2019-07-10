@@ -184,7 +184,7 @@ cd tzlibre
 docker-compose -f composes/docker-compose-devnet.yml up -d baker && docker attach tzlibre_baker
 ```
 
-Insert your password and hit Enter. Wait for the string `Baker started.` to appear in the log and detach from container with `Ctrl-p` + `Ctrl-q`.
+Insert your password and hit Enter. Wait for string "`Baker started.`" and detach from container with `Ctrl-p` + `Ctrl-q`.
 
 
 #### Start `endorser`
@@ -193,7 +193,7 @@ Insert your password and hit Enter. Wait for the string `Baker started.` to appe
 docker-compose -f composes/docker-compose-devnet.yml up -d endorser && docker attach tzlibre_endorser
 ```
 
-Insert your password and hit Enter. Wait for the string `Endorser started.` to appear in the log and detach container with `Ctrl-p` + `Ctrl-q`.
+Insert your password and hit Enter. Wait for string "`Endorser started.`" and detach container with `Ctrl-p` + `Ctrl-q`.
 
 #### (Optional) Start `accuser`
 
@@ -201,7 +201,7 @@ Insert your password and hit Enter. Wait for the string `Endorser started.` to a
 docker-compose -f composes/docker-compose-devnet.yml up -d accuser && docker attach tzlibre_accuser
 ```
 
-Wait for the `Accuser started.` to appear in the log and detach container with `Ctrl-p` + `Ctrl-q`.
+Wait for string "`Accuser started.`" and detach container with `Ctrl-p` + `Ctrl-q`.
 
 ### Interact with  `baker`, `endorser` and `accuser`
 
