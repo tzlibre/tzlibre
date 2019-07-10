@@ -11,13 +11,8 @@
             tezos-protocol-updater
             tezos-embedded-protocol-demo
             tezos-embedded-protocol-000-Ps9mPmXa
-            tezos-embedded-protocol-001-PtCJ7pwo
-            tezos-embedded-protocol-002-PsYLVpVv
-            tezos-embedded-protocol-003-PsddFKi3
-            tezos-embedded-protocol-005-Brest
-            tezos-mempool-002-PsYLVpVv
-            tezos-mempool-003-PsddFKi3
-            tezos-mempool-005-Brest
+            tezos-embedded-protocol-001-Havana
+            tezos-mempool-001-Havana
             cmdliner
             tls)
  (flags (:standard -open Tezos_base__TzPervasives

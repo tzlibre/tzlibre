@@ -2,22 +2,22 @@
  (names bench_simple bench_tool)
  (libraries tezos-base
             tezos-shell
-            tezos_005_Brest_bench_helpers)
+            tezos_001_Havana_bench_helpers)
  (flags (:standard -open Tezos_base__TzPervasives
                    -open Tezos_shell
-                   -open Tezos_005_Brest_bench_helpers)))
+                   -open Tezos_001_Havana_bench_helpers)))
 
 (alias
  (name buildtest)
  (deps bench_tool.exe bench_simple.exe))
 
 (alias
- (name runbench_005_Brest_simple)
+ (name runbench_001_Havana_simple)
  (deps bench_simple.exe)
  (action (chdir %{workspace_root} (run %{exe:bench_simple.exe}))))
 
 (alias
- (name runbench_005_Brest)
+ (name runbench_001_Havana)
  (deps bench_tool.exe)
  (action (chdir %{workspace_root} (run %{exe:bench_tool.exe}))))
 

@@ -1,10 +1,10 @@
 (library
- (name tezos_005_Brest_bench_helpers)
+ (name tezos_001_Havana_bench_helpers)
  (libraries tezos-base
             tezos-stdlib-unix
             tezos-shell-services
             tezos-protocol-environment
-            tezos-protocol-005-Brest
+            tezos-protocol-001-Havana
             alcotest-lwt)
  (flags (:standard -open Tezos_base__TzPervasives
                    -open Tezos_stdlib_unix

@@ -37,7 +37,6 @@ Force a Docker images update to the latest available version:
 
 ```
 docker pull tzlibre/tzlibre
-docker pull tzlibre/tzlibre:devnet
 ```
 
 #### 5. Cleanup previous installs
@@ -66,6 +65,7 @@ docker-compose -f composes/docker-compose-devnet.yml rm
 ##### 5.3 Cleanup old data from disk
 
 ```
+docker system prune
 sudo rm -rf ~/.tzlibre-node-devnet ~/.tzlibre-client-devnet ~/.tzlibre-signer-devnet
 ```
 
@@ -82,10 +82,9 @@ git clone https://github.com/tzlibre/tzlibre.git
 cd tzlibre
 ```
 
-Otherwise, if you previously cloned the repository, update it:
+Otherwise, if you previously cloned the repository, update it, from inside the `tzlibre` repository folder:
 
 ```
-cd tzlibre
 git pull origin devnet
 ```
 
@@ -128,7 +127,7 @@ docker-compose -f composes/docker-compose-devnet.yml logs -f node
 All commands in the following sections (_i.e., _1. Get a funded address_ and 2. Register as delegate_) should be issued inside the Docker container. To attach to the container run:
 
 ```
-docker exec -it tzlibre_node /bin/bash 
+docker exec -it tzlibre_node /bin/bash
 ```
 
 > Check you are inside the container before issuing the following commands (if your shell prompt looks like `root@d9349d4e7123` you're inside the container).
@@ -139,10 +138,8 @@ docker exec -it tzlibre_node /bin/bash
 Choose an alias for your address (eg `my_awesome_baker`), then run:
 
 ```
-tzlibre-client -A none gen keys my_awesome_baker
+tzlibre-client gen keys my_awesome_baker --encrypted
 ```
-
-> Ignore the warning ("Failed to acquire the protocol version from the node"). We are currently using unencrypted keys, encrypted keys will be introduced in a later release.
 
 ##### 1.2 Retrieve address
 ```
@@ -152,7 +149,7 @@ tzlibre-client list known addresses
 > Pick the address associated with your alias.
 
 ##### 1.3. Fund address
-Fund your address with at least 10,000 devnet  coins. Get free devnet coins from this [faucet](http://faucet.devnet.tzlibre.io). 
+Fund your address with at least 10,000 devnet coins. Get free devnet coins from this [faucet](http://faucet.devnet.tzlibre.io). 
 
 ##### 1.5. Check your balance
 Use the [block explorer](http://librexplorer.devnet.tzlibre.io/) or the command line:
@@ -184,20 +181,27 @@ Detach `node` container (Docker users only). Exit container with `Ctrl-d`.
 
 ```
 cd tzlibre
-docker-compose -f composes/docker-compose-devnet.yml up -d baker && docker-compose -f composes/docker-compose-devnet.yml logs -f baker
+docker-compose -f composes/docker-compose-devnet.yml up -d baker && docker attach tzlibre_baker
 ```
+
+Insert your password and hit Enter. Wait for the string ~Baker started.~ to appear in the log and detach from container with `Ctrl-p` + `Ctrl-q`.
+
 
 #### Start `endorser`
 
 ```
-docker-compose -f composes/docker-compose-devnet.yml up -d endorser && docker-compose -f composes/docker-compose-devnet.yml logs -f endorser
+docker-compose -f composes/docker-compose-devnet.yml up -d endorser && docker attach tzlibre_endorser
 ```
+
+Insert your password and hit Enter. Wait for the string ~Endorser started.~ to appear in the log and detach container with `Ctrl-p` + `Ctrl-q`.
 
 #### (Optional) Start `accuser`
 
 ```
-docker-compose -f composes/docker-compose-devnet.yml up -d accuser && docker-compose -f composes/docker-compose-devnet.yml logs -f accuser
+docker-compose -f composes/docker-compose-devnet.yml up -d accuser && docker attach tzlibre_accuser
 ```
+
+Wait for the ~Accuser started.~ to appear in the log and detach container with `Ctrl-p` + `Ctrl-q`.
 
 ### Interact with  `baker`, `endorser` and `accuser`
 
@@ -240,8 +244,8 @@ For each request the faucet delivers from 1M TZL up to 10M TZL.
 ### Q1. How long is a cycle?
 A cycle is composed by 128 blocks and lasts about 1 hour.
 
-### Q2. When will I be able to bake my first block?
 After 7 cycles, almost 8 hours.
+### Q2. When will I be able to bake my first block?
 
 ### Q3. What rewards should I expect?
 - bake:  `16 / halving_factor` TZL
@@ -278,11 +282,11 @@ Ignore this warning. We are currently using unencrypted keys, encrypted keys wil
 
 ### E4. Level previously baked
 This is caused by an incorrect halt of the baker. Please reinstall.
+
 --- 
 ```
 ```
 ---
-
 
 ## Build from sources (advanced users)
 If you prefer to build the TzLibre node from source follow these steps:

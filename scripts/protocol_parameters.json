@@ -5,16 +5,16 @@
       "10000000000000"
     ],
     [
-      "tz1N17Zdbfq5VEASZEGApfcaWmSYJMcnvBeN",
+      "edpkuBoVW5wFAGnaYuAtgtQJq1eNQbEykyhP1DQt6TNpEDpQTqSoq6",
       "2000000000000000"
     ]
   ],
-  "preserved_cycles" : 5,
-  "blocks_per_cycle" : 128,
-  "blocks_per_commitment" : 32,
-  "blocks_per_roll_snapshot" : 8,
-  "blocks_per_voting_period" : 2816,
-  "time_between_blocks" : [ "30" ],
-  "proof_of_work_threshold" : "70368744177663",
-  "cycles_per_halving_period" : 32
+  "preserved_cycles": 5,
+  "blocks_per_cycle": 128,
+  "blocks_per_commitment": 32,
+  "blocks_per_roll_snapshot": 8,
+  "blocks_per_voting_period": 32768,
+  "time_between_blocks": [ "60", "75" ],
+  "proof_of_work_threshold": "70368744177663",
+  "cycles_per_halving_period": 256
 }

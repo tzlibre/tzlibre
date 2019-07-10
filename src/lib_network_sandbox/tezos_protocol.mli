@@ -18,24 +18,24 @@ module Script : sig
   type origin = [`Sandbox_faucet | `String of string]
 
   val parse :
-    string -> Tezos_client_005_Brest.Proto_alpha.Alpha_context.Script.expr
+    string -> Tezos_client_001_Havana.Proto_alpha.Alpha_context.Script.expr
 
   val code_of_json_exn :
        string
-    -> Tezos_client_005_Brest.Proto_alpha.Michelson_v1_primitives.prim
+    -> Tezos_client_001_Havana.Proto_alpha.Michelson_v1_primitives.prim
        Tezos_micheline.Micheline.canonical
 
   val json_script_repr :
-       Tezos_client_005_Brest.Proto_alpha.Script_repr.expr
-    -> Tezos_client_005_Brest.Proto_alpha.Script_repr.expr
+       Tezos_client_001_Havana.Proto_alpha.Script_repr.expr
+    -> Tezos_client_001_Havana.Proto_alpha.Script_repr.expr
     -> Ezjsonm.t
 
   val original_json : string
   val faucet_tz : string
 
   val print :
-       Tezos_client_005_Brest.Proto_alpha.Script_repr.expr
-    -> Tezos_client_005_Brest.Proto_alpha.Script_repr.expr
+       Tezos_client_001_Havana.Proto_alpha.Script_repr.expr
+    -> Tezos_client_001_Havana.Proto_alpha.Script_repr.expr
     -> unit
 
   val load : origin -> Ezjsonm.t

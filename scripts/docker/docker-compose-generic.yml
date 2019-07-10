@@ -58,9 +58,9 @@ services:
     restart: on-failure
 
     # protocol A
-  baker-005-Brest:
+  baker-001-Havana:
     image: tezos/tezos:latest
-    hostname: baker-005-Brest
+    hostname: baker-001-Havana
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-baker
@@ -71,9 +71,9 @@ services:
       - client_data:/var/run/tezos/client
     restart: on-failure
 
-  endorser-005-Brest:
+  endorser-001-Havana:
     image: tezos/tezos:latest
-    hostname: endorser-005-Brest
+    hostname: endorser-001-Havana
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-endorser
@@ -83,9 +83,9 @@ services:
       - client_data:/var/run/tezos/client
     restart: on-failure
 
-  accuser-005-Brest:
+  accuser-001-Havana:
     image: tezos/tezos:latest
-    hostname: accuser-005-Brest
+    hostname: accuser-001-Havana
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-accuser
@@ -95,9 +95,9 @@ services:
       - client_data:/var/run/tezos/client
     restart: on-failure
 
-  baker-005-Brest-test:
+  baker-001-Havana-test:
     image: tezos/tezos:latest
-    hostname: baker-005-Brest-test
+    hostname: baker-001-Havana-test
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-baker-test
@@ -108,9 +108,9 @@ services:
       - client_data:/var/run/tezos/client
     restart: on-failure
 
-  endorser-005-Brest-test:
+  endorser-001-Havana-test:
     image: tezos/tezos:latest
-    hostname: endorser-005-Brest-test
+    hostname: endorser-001-Havana-test
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-endorser-test
@@ -120,9 +120,9 @@ services:
       - client_data:/var/run/tezos/client
     restart: on-failure
 
-  accuser-005-Brest-test:
+  accuser-001-Havana-test:
     image: tezos/tezos:latest
-    hostname: accuser-005-Brest-test
+    hostname: accuser-001-Havana-test
     environment:
       - PROTOCOL=004-PsGLNcdz
     command: tezos-accuser-test

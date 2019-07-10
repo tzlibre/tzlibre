@@ -12,5 +12,5 @@
     genspio
     ezjsonm
     tezos-signer-backends
-    tezos-client-005-Brest))
+    tezos-client-001-Havana))
 

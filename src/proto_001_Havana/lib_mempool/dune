@@ -1,0 +1,16 @@
+(library
+ (name tezos_mempool_001_Havana)
+ (public_name tezos-mempool-001-Havana)
+ (libraries tezos-base
+            tezos-embedded-protocol-001-Havana)
+ (flags (:standard -w -9+27-30-32-40@8
+                   -safe-string
+                   -open Tezos_base__TzPervasives
+                   -open Tezos_embedded_raw_protocol_001_Havana
+                   -open Tezos_embedded_protocol_001_Havana
+                   -open Tezos_embedded_protocol_environment_001_Havana)))
+
+(alias
+ (name runtest_indent)
+ (deps (glob_files *.ml{,i}))
+ (action (run bash %{libexec:tezos-stdlib:test-ocp-indent.sh} %{deps})))
