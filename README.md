@@ -119,6 +119,8 @@ docker-compose -f composes/docker-compose-devnet.yml restart node
 docker-compose -f composes/docker-compose-devnet.yml logs -f node
 ```
 
+> To detach from `node` logs hit `Ctrl-c`: `node` will continue to run in background.
+
 ## How to bake
 
 ### Setup 
@@ -209,12 +211,43 @@ Wait for string "`Accuser started.`" and detach container with `Ctrl-p` + `Ctrl-
 
 You can detach [`baker`|`endorser`|`accuser`] with `Ctrl-c` in each terminal session.
 
-#### Stop, restart
+#### Stop `baker`, `endorser` or `accuser`
 
-> Customize this using either `<stop|restart>` and one or more in `<baker,endorser,accuser>`.
+> Customize this using either one or more in `<baker,endorser,accuser>`.
 
 ```
-docker-compose -f composes/docker-compose-devnet.yml <stop|restart> <baker,endorser,accuser>
+docker-compose -f composes/docker-compose-devnet.yml stop <baker,endorser,accuser>
+```
+
+#### Restart `baker`
+
+You can restart `baker` with:
+
+```
+docker-compose -f composes/docker-compose-devnet.yml restart baker && docker attach tzlibre_baker
+```
+
+It will ask for encryption password of "my_awesome_baker" key. Type it and press Enter.
+Then wait for the string "`Baker started.`" and detach with `Ctrl-p` + `Ctrl-q`.
+
+#### Restart `endorser`
+
+You can restart `endorser` with:
+
+```
+docker-compose -f composes/docker-compose-devnet.yml restart endorser && docker attach tzlibre_endorser
+```
+
+It will ask for encryption password of "my_awesome_baker" key. Type it and press Enter.
+Then wait for the string "`Endorser started.`" and detach with `Ctrl-p` + `Ctrl-q`.
+
+
+#### Restart `accuser`
+
+You can restart `accuser` with:
+
+```
+docker-compose -f composes/docker-compose-devnet.yml restart accuser
 ```
 
 #### Attach to logs
@@ -224,7 +257,6 @@ docker-compose -f composes/docker-compose-devnet.yml <stop|restart> <baker,endor
 ```
 docker-compose -f composes/docker-compose-devnet.yml logs -f <baker,endorser,accuser>
 ```
-
 
 ## Check status
 Check network and node status (software version, latest chain, chain mode):
@@ -282,6 +314,10 @@ Ignore this warning. We are currently using unencrypted keys, encrypted keys wil
 
 ### E4. Level previously baked
 This is caused by an incorrect halt of the baker. Please reinstall.
+
+### E5. Too few connections
+Wait for your node to find more connections. If that doesn't work
+[check status](#check-status).
 
 --- 
 ```
