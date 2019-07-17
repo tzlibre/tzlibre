@@ -23,13 +23,8 @@
 (*                                                                           *)
 (*****************************************************************************)
 
-open Proto_000_Ps9mPmXa
-
-val bake:
-  #Client_context.full ->
-  ?timestamp: Time.Protocol.t ->
-  Shell_services.block ->
-  Data.Command.t ->
-  Client_keys.sk_uri ->
-  Block_hash.t tzresult Lwt.t
-
+module Name = struct let name = "genesis" end
+module Genesis_environment = Tezos_protocol_environment_faked.MakeV1(Name)()
+module Proto = Tezos_protocol_000_Ps8LKGP9.Functor.Make(Genesis_environment)
+module Genesis_block_services = Block_services.Make(Proto)(Proto)
+include Proto

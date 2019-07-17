@@ -23,11 +23,11 @@
 (*                                                                           *)
 (*****************************************************************************)
 
-open Proto_000_Ps9mPmXa
+open Proto_000_Ps8LKGP9
 
 let protocol =
   Protocol_hash.of_b58check_exn
-    "Ps9mPmXaRzmzk35gbAYNCAw6UXdE2qoABTHbN2oEEc1qM7CwT9P"
+    "Ps8LKGP9YR66KH9iyvhhycv91VcEiUowpbj1TfLB6iYGmXUtA69"
 
 let bake cctxt ?timestamp block command sk =
   let timestamp = match timestamp with

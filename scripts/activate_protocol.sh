@@ -18,7 +18,7 @@ fi
 
 is_mainnet () {
     # need to check a real file because of phantom git directories
-    if [ -f "src/proto_000_Ps9mPmXa/lib_protocol/TEZOS_PROTOCOL" ]
+    if [ -f "src/proto_000_Ps8LKGP9/lib_protocol/TEZOS_PROTOCOL" ]
     then return 0; else return 1; fi
 }
 

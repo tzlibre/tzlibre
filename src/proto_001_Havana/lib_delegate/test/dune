@@ -6,7 +6,7 @@
             tezos-rpc-http
             tezos-shell-services
             tezos-client-base
-            tezos-client-000-Ps9mPmXa
+            tezos-client-000-Ps8LKGP9
             tezos-client-001-Havana
             tezos-baking-001-Havana
             tezos-client-base-unix
@@ -16,7 +16,7 @@
                    -open Tezos_rpc_http
                    -open Tezos_shell_services
                    -open Tezos_client_base
-                   -open Tezos_client_000_Ps9mPmXa
+                   -open Tezos_client_000_Ps8LKGP9
                    -open Tezos_client_001_Havana
                    -open Tezos_baking_001_Havana
                    -open Tezos_client_base_unix)))

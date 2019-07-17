@@ -13,7 +13,7 @@ depends: [
   "tezos-client-base"
   "tezos-client-commands"
   "tezos-client-demo"
-  "tezos-client-000-Ps9mPmXa"
+  "tezos-client-000-Ps8LKGP9"
   "tezos-client-001-Havana"
   "tezos-client-001-Havana-commands"
   "tezos-baking-001-Havana-commands"

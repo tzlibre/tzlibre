@@ -36,7 +36,7 @@ endif
 	   cp _build/default/src/proto_$$p/bin_accuser/main_accuser_$$p.exe tzlibre-accuser-`echo $$p | tr -- _ -` ; \
 	 done
 
-PROTOCOLS := 000_Ps9mPmXa 001_Havana demo
+PROTOCOLS := 000_Ps8LKGP9 001_Havana demo
 DUNE_INCS=$(patsubst %,src/proto_%/lib_protocol/dune.inc, ${PROTOCOLS})
 
 generate_dune: ${DUNE_INCS}

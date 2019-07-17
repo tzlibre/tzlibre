@@ -2,12 +2,12 @@ version: '3'
 
 services:
   node:
-    image: tzlibre/tzlibre
+    image: tzlibre/tzlibre:betanet
     container_name: tzlibre_node
     volumes:
       - ./scripts:/scripts
-      - ~/.tzlibre-node-devnet:/root/.tzlibre-node
-      - ~/.tzlibre-client-devnet:/root/.tzlibre-client
+      - ~/.tzlibre-node-betanet:/root/.tzlibre-node
+      - ~/.tzlibre-client-betanet:/root/.tzlibre-client
     restart: on-failure
     ports:
       - 0.0.0.0:9732:9732
@@ -17,43 +17,43 @@ services:
       - 8732
     command: bash -c 'sh /scripts/node.sh'
   baker:
-    image: tzlibre/tzlibre
+    image: tzlibre/tzlibre:betanet
     container_name: tzlibre_baker
     volumes:
       - ./scripts:/scripts
-      - ~/.tzlibre-node-devnet:/root/.tzlibre-node
-      - ~/.tzlibre-client-devnet:/root/.tzlibre-client
+      - ~/.tzlibre-node-betanet:/root/.tzlibre-node:ro
+      - ~/.tzlibre-client-betanet:/root/.tzlibre-client
     restart: on-failure
     command: bash -c 'sh /scripts/baker.sh'
     stdin_open: true
     tty: true
   endorser:
-    image: tzlibre/tzlibre
+    image: tzlibre/tzlibre:betanet
     container_name: tzlibre_endorser
     volumes:
       - ./scripts:/scripts
-      - ~/.tzlibre-node-devnet:/root/.tzlibre-node
-      - ~/.tzlibre-client-devnet:/root/.tzlibre-client
+      - ~/.tzlibre-node-betanet:/root/.tzlibre-node:ro
+      - ~/.tzlibre-client-betanet:/root/.tzlibre-client
     restart: on-failure
     command: bash -c 'sh /scripts/endorser.sh'
     stdin_open: true
     tty: true
   accuser:
-    image: tzlibre/tzlibre
+    image: tzlibre/tzlibre:betanet
     container_name: tzlibre_accuser
     volumes:
       - ./scripts:/scripts
-      - ~/.tzlibre-node-devnet:/root/.tzlibre-node
-      - ~/.tzlibre-client-devnet:/root/.tzlibre-client
+      - ~/.tzlibre-node-betanet:/root/.tzlibre-node:ro
+      - ~/.tzlibre-client-betanet:/root/.tzlibre-client
     restart: on-failure
     command: bash -c 'sh /scripts/accuser.sh'
     stdin_open: true
     tty: true
   status:
-    image: tzlibre/check-chain
+    image: tzlibre/check-chain:betanet
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./scripts:/scripts
-      - ~/.tzlibre-client-devnet:/root/.tzlibre-client
+      - ~/.tzlibre-client-betanet:/root/.tzlibre-client
       - ../.git:/.git
     command: bash -c '/scripts/check.sh'

@@ -8,15 +8,17 @@ license: "MIT"
 depends: [
   "ocamlfind" { build }
   "dune" { build & >= "1.7" }
-  "tezos-protocol-compiler"
+  "tezos-base"
+  "tezos-shell-services"
+  "tezos-client-base"
+  "tezos-client-commands"
+  "tezos-protocol-environment"
+  "tezos-protocol-000-Ps8LKGP9"
 ]
 build: [
-  [ "%{tezos-protocol-compiler:lib}%/replace"
-      "%{tezos-protocol-compiler:lib}%/dune_protocol.template"
-      "dune" "000_Ps9mPmXa" ]
   [ "dune" "build" "-p" name "-j" jobs ]
 ]
 run-test: [
   [ "dune" "runtest" "-p" name "-j" jobs ]
 ]
-synopsis: "Tezos/Protocol: 000_Ps9mPmXa (economic-protocol definition, functor version)"
+synopsis: "Tezos/Protocol: 000-Ps8LKGP9 (protocol-specific commands for `tezos-client`)"

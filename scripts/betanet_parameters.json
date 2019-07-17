@@ -1,0 +1,53 @@
+{
+  "bootstrap_accounts": [
+    [
+      "tz1XVwrFUCEPDPmMZWgtMtkHMcn5ue2pQsC6",
+      "322000000000000"
+    ],
+    [
+      "tz1imgiPZn4NCnJVvzbiwRH2AgEXaasc9gQy",
+      "197561520070000"
+    ],
+    [
+      "tz1eKkMeevZNfTWvtG5EkNTqeS5EoMBNJBtF",
+      "76184605620000"
+    ],
+    [
+      "edpktmT2bWvhSKoiGbwGv5m7diUGSuoK1gmSGX16s3HBdCbKqtxm7T",
+      "100000000"
+    ],
+    [
+      "edpkv6PfPzs9ABhEwg3ddb2pMvvrc8WbL67qkwjHFzYvKcaCqghMTA",
+      "730842160000"
+    ],
+    [
+      "edpkuzK8CEyJzXWLz3FvruzQBUY1xpoRtJiJ1ZHwA9LBJciHKq6V1p",
+      "508004220000"
+    ],
+    [
+      "edpkuuGTiCXvrb2DG1v2uKQFk4pnkm7ri1bUtETfqhKVTnoULHWRFV",
+      "420072510000"
+    ],
+    [
+      "edpkuL1u7gnLQ6sqz3XNhLPEjskd6UrB3ZttRg98ZXV1bzmm1k5teF",
+      "801000000000"
+    ],
+    [
+      "edpkuGSmFtpnb8rDHsp33cPQVF74HgX9E3ghEPNoyBH22RA6foTam2",
+      "802000000000"
+    ]
+  ],
+  "preserved_cycles": 5,
+  "blocks_per_cycle": 4096,
+  "blocks_per_commitment": 32,
+  "blocks_per_roll_snapshot": 256,
+  "blocks_per_voting_period": 32768,
+  "time_between_blocks": [
+    "60",
+    "75"
+  ],
+  "proof_of_work_threshold": "70368744177663",
+  "cycles_per_halving_period": 256,
+  "security_deposit_ramp_up_cycles": 64,
+  "no_reward_cycles": 7
+}

@@ -128,10 +128,10 @@ sed -i.old -e s/_alpha/_${version}_${short_hash}/g \
 # rename genesis except if in master
 if [[ ! "$master" ]]; then
     #rename genesis
-    sed -i.old -e "s/-genesis/-000-Ps9mPmXa/" \
+    sed -i.old -e "s/-genesis/-000-Ps8LKGP9/" \
         $(find . -name dune -or -name \*.opam)
 
-    sed -i.old -e "s/_genesis/_000_Ps9mPmXa/" \
+    sed -i.old -e "s/_genesis/_000_Ps8LKGP9/" \
         $(find lib_delegate/test -type f)
 fi
 
