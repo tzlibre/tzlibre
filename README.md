@@ -7,7 +7,7 @@
 - [4. ✅  Check status](#4--check-status)
 - [5. 🔑  How to manage keys/accounts](#5--how-to-manage-keysaccounts)
 - [6. 🙋  FAQ](#6--faq)
-- [7. ⚠️   Troubleshooting](#7--troubleshooting)
+- [7. ⚠️   Troubleshooting](#7-%EF%B8%8F-troubleshooting)
 - [8. 🛠️   Build from sources](#8--build-from-sources-advanced-users)
 
 ## 1. 📖 Requirements
@@ -61,7 +61,7 @@
 
 ## 3. 🥖 How to bake
 
-You need an account funded with at least 8,000 TZL (1 roll). To import an existing `secret_key` or generate a new one, refer to section [Keys/accounts management](#-how-to-manage-keysaccounts).
+You need an account funded with at least 8,000 TZL (1 roll). To import an existing `secret_key` or generate a new one, refer to section [Keys/accounts management](#--how-to-manage-keysaccounts).
 
 ### Setup 
 
@@ -232,7 +232,7 @@ Wait for your node to find more connections. If that doesn't work
 You probably didn't install Docker properly. Reinstall Docker from scratch following the official guide, then [test your installation](https://docs.docker.com/samples/library/hello-world/)
 
 ### E7. "tzlibre-client get balance for" does not exist
-To use this you must be [inside the docker container](https://github.com/tzlibre/tzlibre#docker-users-only-attach-to-the-container) and verify that your alias actually exists (`tzlibre-client list known addresses`)
+If you are using Docker, check to be attached to a `tzlibre-node` container (step "0. Attach to the container." of [Setup](#setup)) and verify that your alias actually exists (`tzlibre-client list known addresses`)
 
 --- 
 ```
