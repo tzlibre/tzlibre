@@ -1,14 +1,14 @@
 # TzLibre betanet
 
 ## TOC
-- [1. 📖  Requirements](#1-requirements)
-- [2. 🐳  Run with Docker](#2-run-with-docker)
-- [3. 🥖  How to bake](#3-how-to-bake)
-- [4. ✅  Check status](#4-check-status)
-- [5. 🔑  How to manage keys/accounts](#5-how-to-manage-keysaccounts)
-- [6. 🙋  FAQ](#6-faq)
-- [7. ⚠️   Troubleshooting](#7-%EF%B8%8F-troubleshooting)
-- [8. 🛠️   Build from sources](#8-build-from-sources-advanced-users)
+- [1. 📖  Requirements](#1--requirements)
+- [2. 🐳  Run with Docker](#2--run-with-docker)
+- [3. 🥖  How to bake](#3--how-to-bake)
+- [4. ✅  Check status](#4--check-status)
+- [5. 🔑  How to manage keys/accounts](#5--how-to-manage-keysaccounts)
+- [6. 🙋  FAQ](#6--faq)
+- [7. ⚠️   Troubleshooting](#7--troubleshooting)
+- [8. 🛠️   Build from sources](#8--build-from-sources-advanced-users)
 
 ## 1. 📖 Requirements
 - Minimum: 2GB RAM, 100GB storage
@@ -74,7 +74,7 @@ Bootstrap bakers included in genesis **MUST NOT** register as delegate (step 2 "
 
 1. **Wait for bootstrap.** 
    - Wait until your node has bootstrapped (connection and synch). Depending on bandwidth and chain size it may take anything between 30 minutes and few hours
-   - [Check status](#4-check-status). Make sure your node has bootstrapped before moving to the next step
+   - [Check status](#4--check-status). Make sure your node has bootstrapped before moving to the next step
 
 | 🚨 WARNING: Bootstrap bakers included in genesis **MUST NOT** register as delegate. If you are a bootstrap baker **SKIP** step 2 and move to step 3. |
 | :--- |
@@ -226,7 +226,7 @@ This is caused by an incorrect halt of the baker. Please reinstall.
 
 ### E5. Too few connections
 Wait for your node to find more connections. If that doesn't work
-[check status](#4-check-status)
+[check status](#4--check-status)
 
 ### E6. Couldn't connect to Docker daemon
 You probably didn't install Docker properly. Reinstall Docker from scratch following the official guide, then [test your installation](https://docs.docker.com/samples/library/hello-world/)
@@ -239,7 +239,7 @@ To use this you must be [inside the docker container](https://github.com/tzlibre
 ```
 ---
 
-## 🛠 Build from sources (advanced users)
+## 8. 🛠 Build from sources (advanced users)
 If you prefer to build the TzLibre node from source follow these steps:
 
 ```
