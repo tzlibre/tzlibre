@@ -61,7 +61,7 @@
 
 ## 3. 🥖 How to bake
 
-You need an account funded with at least 8,000 TZL (1 roll). To import an existing `secret_key` or generate a new one, refer to section [Keys/accounts management](#--how-to-manage-keysaccounts).
+You need an account funded with at least 1,000 TZL (1 roll). To import an existing `secret_key` or generate a new one, refer to section [Keys/accounts management](#--how-to-manage-keysaccounts).
 
 ### Setup 
 
@@ -128,7 +128,7 @@ An account is controlled by `secret_key`: `public_key` is uniquely derived from 
 Following these steps you'll be able to import a `secret_key` from Librebox to `tzlibre-client`:
 
 1. **Export unencrypted key from LibreBox.**
-   - go to Settings->Export Private Key. It will show an unencrypted private key (`edsk...`)
+   - go to Settings→Export Private Key. It will show an unencrypted private key (`edsk...`)
 
 2. **Prepare the prefixed private key string.** 
    - Open a text editor, paste the `edsk...` string and prepend it with the string `unencrypted:`
