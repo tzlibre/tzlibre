@@ -203,7 +203,7 @@ Halving period is incremented each 256 cycles (~2 years).
 Halving factor is then computed as `2 ^ halving_period`.
 
 ### Q5. How do I find out when's my turn to bake?
-Choose a `block_number` and call: `http://rpc.betanet.tzlibre.io/chains/main/blocks/head/helpers/baking_rights?level=<block_number>`.
+Choose a `block_number` and call: `http://rpc.tzlibre.io/chains/main/blocks/head/helpers/baking_rights?level=<block_number>`.
 
 ### Q6. Where are my private keys?
 Your keys are strored in: `~/.tzlibre-client-betanet`.

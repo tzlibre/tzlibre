@@ -8,8 +8,8 @@ else
     echo "Git repo latest version   [NO]"
 fi
 
-CHAIN_IS_LIVE=$(node -e "console.log($(date +%s)-(new Date(\"$(curl -L --max-time 5 -s http://api-explorer.tzlibre.io/v1/node_timestamps  | jq -r '.[0][1]' 2> /dev/null)\")).getTime()/1000 < 30*20)")
-if [[ "$CHAIN_IS_LIVE" == "true" ]]; then
+CHAIN_IS_LIVE=$(curl -L --max-time 30 -s https://api-explorer.tzlibre.io/explorer/status | jq -r '.status')
+if [[ "$CHAIN_IS_LIVE" == "synced" ]]; then
     echo "TzLibre betanet is up     [YES]"
 else
     echo "TzLibre betanet is up     [NO]"
