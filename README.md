@@ -1,4 +1,4 @@
-# TzLibre Betanet will launch on Feb 25 2020
+# TzLibre betanet will launch on Feb 25 2020
 
 [Get ready 🚀](https://docs.betanet.tzlibre.io)
 
