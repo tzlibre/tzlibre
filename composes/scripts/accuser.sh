@@ -1,2 +1,2 @@
-#!/usr/bin/env bash
-/tzlibre/tzlibre-accuser-001-Havana -A node run
+#!/usr/bin/env sh
+tzlibre-accuser-001-Havana -A tzlibre_node run

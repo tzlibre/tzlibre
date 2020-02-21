@@ -81,9 +81,6 @@ build-deps:
 build-dev-deps:
 	@./scripts/install_build_deps.sh --dev
 
-docker-image:
-	@./scripts/create_docker_image.sh
-
 install:
 	@dune build @install
 	@dune install
@@ -104,3 +101,4 @@ clean:
 	@-rm -f docs/api/tzlibre-{baker,endorser,accuser}-alpha.html docs/api/tzlibre-{admin-,}client.html docs/api/tzlibre-signer.html
 
 .PHONY: all test build-deps docker-image clean
+

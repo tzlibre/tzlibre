@@ -1,0 +1,13 @@
+FROM        alpine:latest
+
+RUN         apk add ocaml opam git make m4 rsync mercurial \
+                    gcc g++ perl dune pkgconfig gmp-dev libev-dev
+RUN         echo "http://dl-3.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+RUN         apk update
+RUN         apk add hidapi-dev
+RUN         opam init --disable-sandboxing
+ADD         . /tzlibre
+WORKDIR     /tzlibre
+ENV         OPAMYES=true
+RUN         eval $(opam env) && make build-deps
+RUN         eval $(opam env) && make

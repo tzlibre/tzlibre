@@ -1,0 +1,75 @@
+{
+  "bootstrap_accounts": [
+    [
+      "tz1imgiPZn4NCnJVvzbiwRH2AgEXaasc9gQy",
+      "50487114000000"
+    ],
+    [
+      "tz1cNtY56cCZNCjcm4KXwdSaMeWbP5Bndnna",
+      "308804812908611"
+    ],
+    [
+      "edpktmT2bWvhSKoiGbwGv5m7diUGSuoK1gmSGX16s3HBdCbKqtxm7T",
+      "100000000"
+    ],
+    [
+      "edpkv6PfPzs9ABhEwg3ddb2pMvvrc8WbL67qkwjHFzYvKcaCqghMTA",
+      "730842161581"
+    ],
+    [
+      "edpkuzK8CEyJzXWLz3FvruzQBUY1xpoRtJiJ1ZHwA9LBJciHKq6V1p",
+      "508004233041"
+    ],
+    [
+      "edpkuuGTiCXvrb2DG1v2uKQFk4pnkm7ri1bUtETfqhKVTnoULHWRFV",
+      "420072500000"
+    ],
+    [
+      "edpkueQQ64oupn2uS1s5eng6HtrEZELNMzKfysFpY53PY5Us6EEMpG",
+      "23796783134"
+    ],
+    [
+      "edpkvSfLYQd3fi5v3Qhcz7fW9BdZ2wxo6GSuDx17GmLYTM9QhQUHFq",
+      "30000000000"
+    ],
+    [
+      "edpkvG71TzpWjpYcKqN6oRr5ERw2Nx3L9QJiyLnqyEinBFgBQMuGa6",
+      "30578829226"
+    ],
+    [
+      "edpkupfu6yz7aURKAxdo7UTCnzsao9TFBrEuak6RCszmNqg6gUxUij",
+      "39448274407"
+    ],
+    [
+      "edpkuUTmugCEKvVk9KiitZ8jCcFCQAdV88yHR7LLgc4HdH8Zhkyhs5",
+      "100000000000"
+    ],
+    [
+      "edpkvZXT5vQYo9xNCDpjusNjHy67Duwg1VjdRUpmsupVVvjr5wwxZF",
+      "100000000000"
+    ],
+    [
+      "edpktkXYgARvHGT4a5KJ6indQqCsYsYrQnhYxdDmbmf2JcnTvuzoA5",
+      "100000000000"
+    ]
+  ],
+  "preserved_cycles": 3,
+  "blocks_per_cycle": 4096,
+  "blocks_per_commitment": 32,
+  "blocks_per_roll_snapshot": 256,
+  "blocks_per_voting_period": 32768,
+  "time_between_blocks": [
+    "60",
+    "75"
+  ],
+  "proof_of_work_threshold": "70368744177663",
+  "cycles_per_halving_period": 256,
+  "security_deposit_ramp_up_cycles": 128,
+  "no_reward_cycles": 1,
+  "tokens_per_roll": "1000000000",
+  "seed_nonce_revelation_tip": "1000000",
+  "block_security_deposit": "1344000000",
+  "endorsement_security_deposit": "84000000",
+  "block_reward": "64000000",
+  "endorsement_reward": "4000000"
+}

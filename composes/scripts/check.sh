@@ -64,3 +64,4 @@ if test -f ~/.tzlibre-client/public_keys; then
 else
     echo "Address created           [NO]"
 fi
+

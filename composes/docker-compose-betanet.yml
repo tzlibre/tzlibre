@@ -2,7 +2,7 @@ version: '3'
 
 services:
   node:
-    image: tzlibre/tzlibre:betanet
+    image: tzlibre/tzlibre:havana
     container_name: tzlibre_node
     volumes:
       - ./scripts:/scripts
@@ -16,45 +16,42 @@ services:
     expose:
       - 9732
       - 8732
-    command: bash -c 'sh /scripts/node.sh'
+    command: ["./scripts/node.sh"]
   baker:
-    image: tzlibre/tzlibre:betanet
+    image: tzlibre/tzlibre:havana
     container_name: tzlibre_baker
     volumes:
       - ./scripts:/scripts
       - ~/.tzlibre-node-betanet:/root/.tzlibre-node:ro
       - ~/.tzlibre-client-betanet:/root/.tzlibre-client
-    restart: on-failure
-    command: bash -c 'sh /scripts/baker.sh'
+    command: ["./scripts/baker.sh"]
     stdin_open: true
     tty: true
   endorser:
-    image: tzlibre/tzlibre:betanet
+    image: tzlibre/tzlibre:havana
     container_name: tzlibre_endorser
     volumes:
       - ./scripts:/scripts
       - ~/.tzlibre-node-betanet:/root/.tzlibre-node:ro
       - ~/.tzlibre-client-betanet:/root/.tzlibre-client
-    restart: on-failure
-    command: bash -c 'sh /scripts/endorser.sh'
+    command: ["./scripts/endorser.sh"]
     stdin_open: true
     tty: true
   accuser:
-    image: tzlibre/tzlibre:betanet
+    image: tzlibre/tzlibre:havana
     container_name: tzlibre_accuser
     volumes:
       - ./scripts:/scripts
       - ~/.tzlibre-node-betanet:/root/.tzlibre-node:ro
       - ~/.tzlibre-client-betanet:/root/.tzlibre-client
-    restart: on-failure
-    command: bash -c 'sh /scripts/accuser.sh'
+    command: ["./scripts/accuser.sh"]
     stdin_open: true
     tty: true
   status:
-    image: tzlibre/check-chain:betanet
+    image: tzlibre/check-chain
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./scripts:/scripts
       - ~/.tzlibre-client-betanet:/root/.tzlibre-client
       - ../.git:/.git
-    command: bash -c '/scripts/check.sh'
+    command: ["./scripts/check.sh"]

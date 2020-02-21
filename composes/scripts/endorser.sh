@@ -1,2 +1,2 @@
-#!/usr/bin/env bash
-/tzlibre/tzlibre-endorser-001-Havana -A node run
+#!/usr/bin/env sh
+tzlibre-endorser-001-Havana -A tzlibre_node run
